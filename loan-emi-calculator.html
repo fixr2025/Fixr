@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Fixr Loan EMI Calculator - Instantly calculate your monthly loan EMI, total interest, and total payment. Free, fast, and mobile-friendly.">
+  <title>Loan EMI Calculator - Fixr Tools</title>
+  <style>
+    :root {
+      --primary: #1d4ed8; /* Royal Blue */
+      --secondary: #ffffff;
+      --text: #111827;
+      --error: #dc2626;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: var(--secondary);
+      color: var(--text);
+      padding: 1rem;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 2rem;
+      background: #f9f9f9;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-radius: 12px;
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--primary);
+      font-size: 1.8rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .results {
+      margin-top: 2rem;
+      background: var(--secondary);
+      border: 1px solid #ccc;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .results p {
+      margin: 0.5rem 0;
+    }
+
+    .error {
+      color: var(--error);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+    }
+
+    .cta {
+      display: block;
+      width: 100%;
+      margin-top: 2rem;
+      background: var(--primary);
+      color: #fff;
+      padding: 12px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background: #2563eb;
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Loan EMI Calculator</h1>
+    <form id="emiForm">
+      <label for="amount">Loan Amount (₹)</label>
+      <input type="number" id="amount" required />
+
+      <label for="interest">Annual Interest Rate (%)</label>
+      <input type="number" id="interest" step="0.01" required />
+
+      <label for="tenure">Loan Tenure</label>
+      <input type="number" id="tenure" required />
+
+      <label for="tenureType">Tenure Type</label>
+      <select id="tenureType">
+        <option value="years">Years</option>
+        <option value="months">Months</option>
+      </select>
+
+      <button type="submit" class="cta">Calculate EMI</button>
+    </form>
+
+    <div class="results" id="results" style="display: none;">
+      <p><strong>Monthly EMI:</strong> ₹<span id="emi">0</span></p>
+      <p><strong>Total Interest:</strong> ₹<span id="interestAmt">0</span></p>
+      <p><strong>Total Payment:</strong> ₹<span id="totalPayment">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('emiForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const amount = parseFloat(document.getElementById('amount').value);
+      const interest = parseFloat(document.getElementById('interest').value);
+      let tenure = parseFloat(document.getElementById('tenure').value);
+      const tenureType = document.getElementById('tenureType').value;
+
+      if (!amount || !interest || !tenure || amount <= 0 || interest <= 0 || tenure <= 0) {
+        alert('Please enter valid positive values for all fields.');
+        return;
+      }
+
+      if (tenureType === 'years') {
+        tenure = tenure * 12; // convert years to months
+      }
+
+      const monthlyInterestRate = interest / 12 / 100;
+      const emi = (amount * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
+                  (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+
+      const totalPayment = emi * tenure;
+      const totalInterest = totalPayment - amount;
+
+      document.getElementById('emi').textContent = emi.toFixed(2);
+      document.getElementById('interestAmt').textContent = totalInterest.toFixed(2);
+      document.getElementById('totalPayment').textContent = totalPayment.toFixed(2);
+      document.getElementById('results').style.display = 'block';
+    });
+  </script>
+</body>
+</html>

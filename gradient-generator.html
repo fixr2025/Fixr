@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Generate custom CSS gradients easily with Fixr's Gradient Generator tool." />
+  <title>Gradient Generator – Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --white: #ffffff;
+      --gray: #f3f4f6;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--gray);
+      padding: 1rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin: 1rem 0 0.5rem;
+    }
+
+    input[type="color"],
+    select {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    #preview {
+      height: 150px;
+      border-radius: 10px;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+    }
+
+    textarea {
+      width: 100%;
+      margin-top: 1rem;
+      font-family: monospace;
+      padding: 0.5rem;
+      height: 60px;
+      background: var(--gray);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gradient Generator</h1>
+    
+    <label for="color1">Start Color:</label>
+    <input type="color" id="color1" value="#1d4ed8" />
+    
+    <label for="color2">End Color:</label>
+    <input type="color" id="color2" value="#38bdf8" />
+
+    <label for="direction">Direction:</label>
+    <select id="direction">
+      <option value="to right">Left to Right</option>
+      <option value="to left">Right to Left</option>
+      <option value="to bottom">Top to Bottom</option>
+      <option value="to top">Bottom to Top</option>
+      <option value="135deg">Diagonal ↘</option>
+      <option value="45deg">Diagonal ↗</option>
+    </select>
+
+    <div id="preview"></div>
+
+    <label>CSS Code:</label>
+    <textarea id="cssCode" readonly></textarea>
+  </div>
+
+  <script>
+    const color1 = document.getElementById('color1');
+    const color2 = document.getElementById('color2');
+    const direction = document.getElementById('direction');
+    const preview = document.getElementById('preview');
+    const cssCode = document.getElementById('cssCode');
+
+    function updateGradient() {
+      const gradient = `linear-gradient(${direction.value}, ${color1.value}, ${color2.value})`;
+      preview.style.background = gradient;
+      cssCode.value = `background: ${gradient};`;
+    }
+
+    color1.addEventListener('input', updateGradient);
+    color2.addEventListener('input', updateGradient);
+    direction.addEventListener('change', updateGradient);
+
+    // Load default gradient
+    window.onload = updateGradient;
+  </script>
+</body>
+</html>

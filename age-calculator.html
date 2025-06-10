@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Calculate your exact age including time of birth and countdown to your next birthday. Bright royal blue themed, fully responsive Age Calculator tool." />
+  <title>Advanced Age Calculator</title>
+  <style>
+    body {
+      background-color: #ffffff;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .age-calculator {
+      background-color: #f4f9ff;
+      border-radius: 12px;
+      padding: 30px 25px;
+      box-shadow: 0 4px 15px rgba(0, 86, 214, 0.3);
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      color: #003d99;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #0056d6;
+      font-weight: 700;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 1.1em;
+      text-align: left;
+      color: #0056d6;
+    }
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1.1em;
+      border-radius: 8px;
+      border: 1.5px solid #0056d6;
+      margin-bottom: 20px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
+    }
+    input[type="date"]:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: #003d99;
+      box-shadow: 0 0 6px #0056d6aa;
+    }
+    .time-inputs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .time-inputs > div {
+      flex: 1;
+    }
+    .result, .countdown {
+      font-size: 1.3em;
+      font-weight: 600;
+      color: #0041a8;
+      min-height: 3em;
+      margin-top: 10px;
+    }
+    @media (max-width: 480px) {
+      .age-calculator {
+        padding: 20px 15px;
+      }
+      h1 {
+        font-size: 1.6em;
+      }
+      input[type="date"], input[type="number"] {
+        font-size: 1em;
+      }
+      .result, .countdown {
+        font-size: 1.1em;
+      }
+      .time-inputs {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="age-calculator" aria-label="Advanced Age Calculator Tool">
+    <h1>Age Calculator</h1>
+    <form onsubmit="return false;">
+      <label for="birthdate">Enter your birthdate:</label>
+      <input type="date" id="birthdate" name="birthdate" max="" aria-describedby="ageResult" required />
+
+      <div class="time-inputs">
+        <div>
+          <label for="birthhour">Hour of birth (0-23):</label>
+          <input type="number" id="birthhour" name="birthhour" min="0" max="23" value="0" />
+        </div>
+        <div>
+          <label for="birthminute">Minute of birth (0-59):</label>
+          <input type="number" id="birthminute" name="birthminute" min="0" max="59" value="0" />
+        </div>
+      </div>
+    </form>
+    <div class="result" id="ageResult" aria-live="polite" aria-atomic="true">
+      Please enter your birthdate.
+    </div>
+    <div class="countdown" id="birthdayCountdown" aria-live="polite" aria-atomic="true"></div>
+  </section>
+
+  <script>
+    const birthdateInput = document.getElementById('birthdate');
+    const birthhourInput = document.getElementById('birthhour');
+    const birthminuteInput = document.getElementById('birthminute');
+    const ageResult = document.getElementById('ageResult');
+    const birthdayCountdown = document.getElementById('birthdayCountdown');
+
+    birthdateInput.max = new Date().toISOString().split("T")[0];
+
+    function pluralize(value, word) {
+      return `${value} ${word}${value !== 1 ? 's' : ''}`;
+    }
+
+    function calculateAge() {
+      if (!birthdateInput.value) {
+        ageResult.textContent = 'Please enter your birthdate.';
+        birthdayCountdown.textContent = '';
+        return;
+      }
+      const birthDate = new Date(birthdateInput.value);
+      const birthHour = Number(birthhourInput.value) || 0;
+      const birthMinute = Number(birthminuteInput.value) || 0;
+
+      if (
+        birthHour < 0 || birthHour > 23 ||
+        birthMinute < 0 || birthMinute > 59
+      ) {
+        ageResult.textContent = 'Please enter valid birth hour (0-23) and minute (0-59).';
+        birthdayCountdown.textContent = '';
+        return;
+      }
+
+      birthDate.setHours(birthHour, birthMinute, 0, 0);
+
+      const now = new Date();
+      if (birthDate > now) {
+        ageResult.textContent = 'Birthdate and time cannot be in the future.';
+        birthdayCountdown.textContent = '';
+        return;
+      }
+
+      let years = now.getFullYear() - birthDate.getFullYear();
+      let months = now.getMonth() - birthDate.getMonth();
+      let days = now.getDate() - birthDate.getDate();
+      let hours = now.getHours() - birthDate.getHours();
+      let minutes = now.getMinutes() - birthDate.getMinutes();
+      let seconds = now.getSeconds() - birthDate.getSeconds();
+
+      if (seconds < 0) {
+        minutes--;
+        seconds += 60;
+      }
+      if (minutes < 0) {
+        hours--;
+        minutes += 60;
+      }
+      if (hours < 0) {
+        days--;
+        hours += 24;
+      }
+      if (days < 0) {
+        months--;
+        // days in previous month
+        const prevMonth = new Date(now.getFullYear(), now.getMonth(), 0);
+        days += prevMonth.getDate();
+      }
+      if (months < 0) {
+        years--;
+        months += 12;
+      }
+
+      ageResult.textContent = `You are ${pluralize(years, 'year')}, ${pluralize(months, 'month')}, ${pluralize(days, 'day')}, ${pluralize(hours, 'hour')}, and ${pluralize(minutes, 'minute')} old.`;
+
+      // Calculate countdown to next birthday
+      let nextBirthday = new Date(birthDate);
+      nextBirthday.setFullYear(now.getFullYear());
+      if (nextBirthday < now) {
+        nextBirthday.setFullYear(now.getFullYear() + 1);
+      }
+
+      const diff = nextBirthday - now;
+      if (diff <= 0) {
+        birthdayCountdown.textContent = 'Happy Birthday! 🎉';
+        return;
+      }
+
+      const countdownDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const countdownHours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const countdownMinutes = Math.floor((diff / (1000 * 60)) % 60);
+      const countdownSeconds = Math.floor((diff / 1000) % 60);
+
+      birthdayCountdown.textContent = `Time until next birthday: ${pluralize(countdownDays, 'day')}, ${pluralize(countdownHours, 'hour')}, ${pluralize(countdownMinutes, 'minute')}, ${pluralize(countdownSeconds, 'second')}`;
+    }
+
+    birthdateInput.addEventListener('input', calculateAge);
+    birthhourInput.addEventListener('input', calculateAge);
+    birthminuteInput.addEventListener('input', calculateAge);
+
+    // Initial max date and clear result on load
+    window.addEventListener('load', () => {
+      birthdateInput.max = new Date().toISOString().split("T")[0];
+      ageResult.textContent = 'Please enter your birthdate.';
+      birthdayCountdown.textContent = '';
+    });
+
+    // Update countdown every second for live ticking
+    setInterval(() => {
+      if (birthdateInput.value) {
+        calculateAge();
+      }
+    }, 1000);
+  </script>
+</body>
+</html>

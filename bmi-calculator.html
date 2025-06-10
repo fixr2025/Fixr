@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Calculate your BMI easily with metric or imperial units. Instant results with clear category display. Bright royal blue and white theme." />
+<title>BMI Calculator</title>
+<style>
+  body {
+    background: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #003d99;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+  .bmi-calculator {
+    background: #f4f9ff;
+    padding: 25px 30px;
+    max-width: 400px;
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(0, 86, 214, 0.3);
+    text-align: center;
+  }
+  h1 {
+    margin-bottom: 20px;
+    color: #0056d6;
+  }
+  label {
+    display: block;
+    text-align: left;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #0056d6;
+    font-size: 1.1em;
+  }
+  input[type="number"] {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 1.1em;
+    border: 1.5px solid #0056d6;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  input[type="number"]:focus {
+    outline: none;
+    border-color: #003d99;
+    box-shadow: 0 0 6px #0056d6aa;
+  }
+  .unit-selector {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .unit-selector label {
+    margin-right: 20px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .result {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #0041a8;
+    min-height: 2.8em;
+  }
+  .error {
+    color: #d8000c;
+    font-weight: 700;
+    margin-top: -15px;
+    margin-bottom: 15px;
+  }
+  @media (max-width: 480px) {
+    .bmi-calculator {
+      padding: 20px 18px;
+    }
+    h1 {
+      font-size: 1.6em;
+    }
+    input[type="number"] {
+      font-size: 1em;
+    }
+    label {
+      font-size: 1em;
+    }
+  }
+</style>
+</head>
+<body>
+
+<main class="bmi-calculator" role="main" aria-label="Body Mass Index Calculator">
+  <h1>BMI Calculator</h1>
+  <form id="bmiForm" onsubmit="return false;">
+    <fieldset class="unit-selector">
+      <legend style="font-weight:700; color:#0056d6;">Select Units:</legend>
+      <label><input type="radio" name="units" value="metric" checked /> Metric (kg, cm)</label>
+      <label><input type="radio" name="units" value="imperial" /> Imperial (lbs, inches)</label>
+    </fieldset>
+
+    <label for="weight">Weight</label>
+    <input type="number" id="weight" name="weight" min="0" step="any" placeholder="Enter your weight" aria-describedby="weightError" required />
+    <div id="weightError" class="error" aria-live="polite"></div>
+
+    <label for="height">Height</label>
+    <input type="number" id="height" name="height" min="0" step="any" placeholder="Enter your height" aria-describedby="heightError" required />
+    <div id="heightError" class="error" aria-live="polite"></div>
+
+    <div class="result" id="result" aria-live="polite" aria-atomic="true"></div>
+  </form>
+</main>
+
+<script>
+  const bmiForm = document.getElementById('bmiForm');
+  const weightInput = document.getElementById('weight');
+  const heightInput = document.getElementById('height');
+  const resultDiv = document.getElementById('result');
+  const weightErrorDiv = document.getElementById('weightError');
+  const heightErrorDiv = document.getElementById('heightError');
+  const unitRadios = document.querySelectorAll('input[name="units"]');
+
+  function validateInput() {
+    let valid = true;
+    weightErrorDiv.textContent = '';
+    heightErrorDiv.textContent = '';
+
+    if (!weightInput.value || weightInput.value <= 0) {
+      weightErrorDiv.textContent = 'Please enter a valid positive weight.';
+      valid = false;
+    }
+    if (!heightInput.value || heightInput.value <= 0) {
+      heightErrorDiv.textContent = 'Please enter a valid positive height.';
+      valid = false;
+    }
+    return valid;
+  }
+
+  function calculateBMI() {
+    if (!validateInput()) {
+      resultDiv.textContent = '';
+      return;
+    }
+
+    const weight = parseFloat(weightInput.value);
+    const height = parseFloat(heightInput.value);
+    const unit = [...unitRadios].find(r => r.checked).value;
+
+    let bmi;
+
+    if (unit === 'metric') {
+      // height in cm to meters
+      const heightMeters = height / 100;
+      bmi = weight / (heightMeters * heightMeters);
+    } else {
+      // imperial: bmi = (weight in lbs / (height in inches)^2) * 703
+      bmi = (weight / (height * height)) * 703;
+    }
+
+    bmi = bmi.toFixed(1);
+
+    let category = '';
+    if (bmi < 18.5) category = 'Underweight';
+    else if (bmi < 24.9) category = 'Normal weight';
+    else if (bmi < 29.9) category = 'Overweight';
+    else category = 'Obese';
+
+    resultDiv.textContent = `Your BMI is ${bmi} (${category}).`;
+  }
+
+  bmiForm.addEventListener('input', calculateBMI);
+
+  // Initialize
+  calculateBMI();
+</script>
+
+</body>
+</html>

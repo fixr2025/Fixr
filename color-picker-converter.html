@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Pick colors and convert between HEX, RGB, and HSL with Fixr's Color Picker & Converter tool." />
+<title>Color Picker & Converter – Fixr Tools</title>
+<style>
+  :root {
+    --blue: #1d4ed8;
+    --white: #fff;
+    --gray: #f3f4f6;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gray);
+    margin: 0; padding: 1rem;
+    color: #1f2937;
+  }
+  .container {
+    max-width: 480px;
+    margin: auto;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  h1 {
+    color: var(--blue);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  label {
+    font-weight: 600;
+    margin-top: 1rem;
+    display: block;
+    color: #374151;
+  }
+  input[type="color"], input[type="text"] {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.3rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    box-sizing: border-box;
+  }
+  .output {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    background: var(--gray);
+    font-family: monospace;
+    font-size: 1.1rem;
+    text-align: center;
+  }
+  .color-swatch {
+    height: 60px;
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 1rem;
+    border: 1px solid #ccc;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Color Picker & Converter</h1>
+    <label for="colorInput">Pick a color:</label>
+    <input type="color" id="colorInput" value="#1d4ed8" />
+
+    <label for="hexInput">HEX:</label>
+    <input type="text" id="hexInput" value="#1d4ed8" maxlength="7" />
+
+    <label for="rgbOutput">RGB:</label>
+    <div class="output" id="rgbOutput">rgb(29, 78, 216)</div>
+
+    <label for="hslOutput">HSL:</label>
+    <div class="output" id="hslOutput">hsl(222, 73%, 48%)</div>
+
+    <div class="color-swatch" id="colorSwatch"></div>
+  </div>
+
+  <script>
+    const colorInput = document.getElementById('colorInput');
+    const hexInput = document.getElementById('hexInput');
+    const rgbOutput = document.getElementById('rgbOutput');
+    const hslOutput = document.getElementById('hslOutput');
+    const colorSwatch = document.getElementById('colorSwatch');
+
+    function hexToRgb(hex) {
+      hex = hex.replace('#', '');
+      if(hex.length !== 6) return null;
+      const bigint = parseInt(hex, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return {r, g, b};
+    }
+
+    function rgbToHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+      if(max === min){
+          h = s = 0; // achromatic
+      } else {
+          const d = max - min;
+          s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+          switch(max){
+              case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+              case g: h = (b - r) / d + 2; break;
+              case b: h = (r - g) / d + 4; break;
+          }
+          h /= 6;
+      }
+      return { h: Math.round(h * 360), s: Math.round(s * 100), l: Math.round(l * 100) };
+    }
+
+    function updateAllFromHex(hex) {
+      if(!/^#([0-9A-F]{6})$/i.test(hex)) return;
+      colorInput.value = hex;
+      hexInput.value = hex.toUpperCase();
+      const rgb = hexToRgb(hex);
+      if(rgb){
+        rgbOutput.textContent = `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`;
+        const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+        hslOutput.textContent = `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`;
+        colorSwatch.style.backgroundColor = hex;
+      }
+    }
+
+    colorInput.addEventListener('input', (e) => {
+      updateAllFromHex(e.target.value);
+    });
+
+    hexInput.addEventListener('input', (e) => {
+      let val = e.target.value;
+      if(!val.startsWith('#')) val = '#' + val;
+      if(val.length > 7) val = val.slice(0, 7);
+      e.target.value = val.toUpperCase();
+      updateAllFromHex(val);
+    });
+
+    // Initialize
+    updateAllFromHex(colorInput.value);
+  </script>
+</body>
+</html>

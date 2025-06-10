@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Merge or split PDF files online for free. Upload multiple PDFs to combine, or split pages from one PDF. Mobile responsive and SEO-friendly." />
+  <title>PDF Merger & Splitter Tool</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #f4f9ff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056d6;
+    }
+    input[type="file"], button, select, input[type="text"] {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #0056d6;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0041a8;
+    }
+    .status {
+      margin-top: 15px;
+      text-align: center;
+      color: #0056d6;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PDF Merger & Splitter Tool</h1>
+    <select id="operation">
+      <option value="merge">Merge PDFs</option>
+      <option value="split">Split PDF</option>
+    </select>
+
+    <input type="file" id="fileInput" accept="application/pdf" multiple />
+    <input type="text" id="pageRange" placeholder="Enter page range to split (e.g., 1-3,5)" style="display: none;" />
+
+    <button id="processBtn">Process PDF</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
+  <script>
+    const operationSelect = document.getElementById('operation');
+    const fileInput = document.getElementById('fileInput');
+    const processBtn = document.getElementById('processBtn');
+    const status = document.getElementById('status');
+    const pageRangeInput = document.getElementById('pageRange');
+
+    operationSelect.addEventListener('change', () => {
+      pageRangeInput.style.display = operationSelect.value === 'split' ? 'block' : 'none';
+      fileInput.multiple = operationSelect.value === 'merge';
+    });
+
+    function parsePageRange(rangeStr, totalPages) {
+      const parts = rangeStr.split(',');
+      const pages = new Set();
+      parts.forEach(part => {
+        if (part.includes('-')) {
+          let [start, end] = part.split('-').map(n => parseInt(n));
+          for (let i = start; i <= end; i++) pages.add(i);
+        } else {
+          pages.add(parseInt(part));
+        }
+      });
+      return Array.from(pages).filter(n => n >= 1 && n <= totalPages);
+    }
+
+    processBtn.addEventListener('click', async () => {
+      const files = fileInput.files;
+      if (!files.length) return alert('Please upload at least one PDF file.');
+      status.textContent = 'Processing...';
+
+      try {
+        if (operationSelect.value === 'merge') {
+          const mergedPdf = await PDFLib.PDFDocument.create();
+          for (const file of files) {
+            const bytes = await file.arrayBuffer();
+            const pdf = await PDFLib.PDFDocument.load(bytes);
+            const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+            copiedPages.forEach(page => mergedPdf.addPage(page));
+          }
+          const mergedBytes = await mergedPdf.save();
+          const blob = new Blob([mergedBytes], { type: 'application/pdf' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'merged.pdf';
+          a.click();
+          status.textContent = 'PDFs merged successfully!';
+        } else {
+          const file = files[0];
+          const bytes = await file.arrayBuffer();
+          const pdfDoc = await PDFLib.PDFDocument.load(bytes);
+          const totalPages = pdfDoc.getPageCount();
+          const range = pageRangeInput.value.trim();
+          const pagesToExtract = range ? parsePageRange(range, totalPages) : Array.from({length: totalPages}, (_, i) => i + 1);
+
+          for (const pageNum of pagesToExtract) {
+            const newPdf = await PDFLib.PDFDocument.create();
+            const [copiedPage] = await newPdf.copyPages(pdfDoc, [pageNum - 1]);
+            newPdf.addPage(copiedPage);
+            const newBytes = await newPdf.save();
+            const blob = new Blob([newBytes], { type: 'application/pdf' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `page-${pageNum}.pdf`;
+            a.click();
+          }
+          status.textContent = 'PDF split successfully!';
+        }
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Error processing PDF: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

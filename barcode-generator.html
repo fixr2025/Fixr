@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create customizable barcodes instantly with Fixr's Barcode Generator tool.">
+  <title>Barcode Generator - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: var(--gray);
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    h1 {
+      color: var(--blue);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    button {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    button:hover {
+      background-color: #1742c0;
+    }
+    svg {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Barcode Generator</h1>
+    <input type="text" id="barcodeInput" placeholder="Enter text or number">
+    <button onclick="generateBarcode()">Generate Barcode</button>
+    <svg id="barcode"></svg>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+  <script>
+    function generateBarcode() {
+      const value = document.getElementById('barcodeInput').value.trim();
+      if (!value) return alert('Please enter text or number to generate barcode.');
+      JsBarcode("#barcode", value, {
+        format: "CODE128",
+        lineColor: "#000",
+        width: 2,
+        height: 100,
+        displayValue: true
+      });
+    }
+  </script>
+</body>
+</html>

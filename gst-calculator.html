@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Fixr GST Calculator – Add or remove GST from any amount instantly. Clean, fast and mobile-friendly.">
+  <title>GST Calculator – Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --white: #ffffff;
+      --text: #111827;
+      --bg-light: #f9fafb;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0;
+      padding: 1rem;
+      background: var(--bg-light);
+      color: var(--text);
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--blue);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 0.4rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .radio-group {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1rem;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+    }
+
+    .cta {
+      background: var(--blue);
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .cta:hover {
+      background: #2563eb;
+    }
+
+    .results {
+      margin-top: 2rem;
+      background: #eef2ff;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+
+    .results p {
+      margin: 0.5rem 0;
+    }
+
+    @media(max-width: 500px) {
+      .container {
+        padding: 1rem;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GST Calculator</h1>
+
+    <label for="amount">Enter Amount (₹)</label>
+    <input type="number" id="amount" placeholder="e.g. 1000" required>
+
+    <label for="gst">GST Rate (%)</label>
+    <input type="number" id="gst" placeholder="e.g. 18" required>
+
+    <div class="radio-group">
+      <label><input type="radio" name="type" value="add" checked> Add GST</label>
+      <label><input type="radio" name="type" value="remove"> Remove GST</label>
+    </div>
+
+    <button class="cta" onclick="calculateGST()">Calculate</button>
+
+    <div class="results" id="resultBox" style="display:none;">
+      <p><strong>GST Amount:</strong> ₹<span id="gstAmt">0</span></p>
+      <p><strong>Final Amount:</strong> ₹<span id="finalAmt">0</span></p>
+    </div>
+  </div>
+
+  <script>
+    function calculateGST() {
+      const amount = parseFloat(document.getElementById('amount').value);
+      const gstRate = parseFloat(document.getElementById('gst').value);
+      const type = document.querySelector('input[name="type"]:checked').value;
+
+      if (!amount || !gstRate || amount < 0 || gstRate < 0) {
+        alert('Please enter valid positive numbers.');
+        return;
+      }
+
+      let gstAmount = 0;
+      let finalAmount = 0;
+
+      if (type === 'add') {
+        gstAmount = (amount * gstRate) / 100;
+        finalAmount = amount + gstAmount;
+      } else {
+        gstAmount = (amount * gstRate) / (100 + gstRate);
+        finalAmount = amount - gstAmount;
+      }
+
+      document.getElementById('gstAmt').textContent = gstAmount.toFixed(2);
+      document.getElementById('finalAmt').textContent = finalAmount.toFixed(2);
+      document.getElementById('resultBox').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

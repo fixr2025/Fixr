@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Encrypt and decrypt text easily with Fixr's Text Encryptor / Decryptor tool." />
+<title>Text Encryptor / Decryptor – Fixr Tools</title>
+<style>
+  :root {
+    --blue: #1d4ed8;
+    --white: #fff;
+    --gray: #f3f4f6;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gray);
+    margin: 0; padding: 1rem;
+    color: #1f2937;
+  }
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  }
+  h1 {
+    color: var(--blue);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    display: block;
+    color: #374151;
+  }
+  textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: vertical;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+  .buttons {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  button {
+    background: var(--blue);
+    color: var(--white);
+    border: none;
+    padding: 10px 18px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 0 8px;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background: #2563eb;
+  }
+  .output {
+    background: var(--gray);
+    padding: 1rem;
+    border-radius: 10px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    min-height: 80px;
+    color: #1e293b;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>Text Encryptor / Decryptor</h1>
+    <label for="inputText">Enter text:</label>
+    <textarea id="inputText" placeholder="Type or paste text here..."></textarea>
+    <div class="buttons">
+      <button onclick="encryptText()">Encrypt</button>
+      <button onclick="decryptText()">Decrypt</button>
+      <button onclick="clearText()">Clear</button>
+    </div>
+    <label for="outputText">Output:</label>
+    <div class="output" id="outputText"></div>
+  </div>
+
+  <script>
+    // Simple Caesar cipher with shift 3 for demonstration
+    const shift = 3;
+
+    function encryptText() {
+      const input = document.getElementById('inputText').value;
+      let output = '';
+      for(let i=0; i<input.length; i++) {
+        let charCode = input.charCodeAt(i);
+        // Encrypt uppercase letters
+        if(charCode >= 65 && charCode <= 90) {
+          charCode = ((charCode - 65 + shift) % 26) + 65;
+        }
+        // Encrypt lowercase letters
+        else if(charCode >= 97 && charCode <= 122) {
+          charCode = ((charCode - 97 + shift) % 26) + 97;
+        }
+        output += String.fromCharCode(charCode);
+      }
+      document.getElementById('outputText').textContent = output;
+    }
+
+    function decryptText() {
+      const input = document.getElementById('inputText').value;
+      let output = '';
+      for(let i=0; i<input.length; i++) {
+        let charCode = input.charCodeAt(i);
+        // Decrypt uppercase letters
+        if(charCode >= 65 && charCode <= 90) {
+          charCode = ((charCode - 65 - shift + 26) % 26) + 65;
+        }
+        // Decrypt lowercase letters
+        else if(charCode >= 97 && charCode <= 122) {
+          charCode = ((charCode - 97 - shift + 26) % 26) + 97;
+        }
+        output += String.fromCharCode(charCode);
+      }
+      document.getElementById('outputText').textContent = output;
+    }
+
+    function clearText() {
+      document.getElementById('inputText').value = '';
+      document.getElementById('outputText').textContent = '';
+    }
+  </script>
+</body>
+</html>

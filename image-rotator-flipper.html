@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rotate and flip images easily with this free tool. Upload, preview, and download modified images. Fully mobile-responsive and SEO-friendly." />
+  <title>Image Rotator & Flipper Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #f4f9ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056d6;
+    }
+    input[type="file"], button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #0056d6;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background-color: #0041a8;
+    }
+    canvas {
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 2px solid #0056d6;
+      max-width: 100%;
+    }
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+    }
+    .button-group button {
+      flex: 1 1 45%;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Image Rotator & Flipper Tool</h1>
+    <input type="file" id="imageInput" accept="image/*" />
+    <div class="button-group">
+      <button onclick="rotate(-90)">Rotate Left</button>
+      <button onclick="rotate(90)">Rotate Right</button>
+      <button onclick="flip('horizontal')">Flip Horizontal</button>
+      <button onclick="flip('vertical')">Flip Vertical</button>
+      <button onclick="downloadImage()">Download Image</button>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let img = new Image();
+    let scaleX = 1, scaleY = 1, rotation = 0;
+
+    imageInput.addEventListener('change', function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          img.onload = function () {
+            scaleX = 1;
+            scaleY = 1;
+            rotation = 0;
+            drawImage();
+          }
+          img.src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    function drawImage() {
+      const radians = rotation * Math.PI / 180;
+      const width = img.width;
+      const height = img.height;
+      let canvasWidth = width;
+      let canvasHeight = height;
+
+      if (rotation % 180 !== 0) {
+        canvasWidth = height;
+        canvasHeight = width;
+      }
+
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
+
+      ctx.save();
+      ctx.translate(canvasWidth / 2, canvasHeight / 2);
+      ctx.rotate(radians);
+      ctx.scale(scaleX, scaleY);
+      ctx.drawImage(img, -width / 2, -height / 2);
+      ctx.restore();
+    }
+
+    function rotate(deg) {
+      rotation = (rotation + deg) % 360;
+      drawImage();
+    }
+
+    function flip(direction) {
+      if (direction === 'horizontal') {
+        scaleX *= -1;
+      } else {
+        scaleY *= -1;
+      }
+      drawImage();
+    }
+
+    function downloadImage() {
+      const link = document.createElement('a');
+      link.download = 'modified-image.png';
+      link.href = canvas.toDataURL();
+      link.click();
+    }
+  </script>
+</body>
+</html>

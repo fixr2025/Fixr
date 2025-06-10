@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Convert times across different time zones easily with Fixr's Time Zone Converter tool." />
+  <title>Time Zone Converter - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+      --dark-gray: #333;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: var(--gray);
+      color: var(--dark-gray);
+    }
+    .container {
+      max-width: 450px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+      color: var(--blue);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+    select, input[type="time"], input[type="date"] {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      text-align: center;
+      color: var(--blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Time Zone Converter</h1>
+
+    <label for="dateInput">Select Date</label>
+    <input type="date" id="dateInput" />
+
+    <label for="timeInput">Select Time</label>
+    <input type="time" id="timeInput" value="12:00" />
+
+    <label for="fromZone">From Time Zone</label>
+    <select id="fromZone">
+      <!-- Some common time zones -->
+      <option value="UTC">UTC</option>
+      <option value="America/New_York">New York (EST/EDT)</option>
+      <option value="Europe/London">London (GMT/BST)</option>
+      <option value="Asia/Dhaka">Dhaka (BST)</option>
+      <option value="Asia/Kolkata">Kolkata (IST)</option>
+      <option value="Asia/Tokyo">Tokyo (JST)</option>
+      <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+    </select>
+
+    <label for="toZone">To Time Zone</label>
+    <select id="toZone">
+      <option value="UTC">UTC</option>
+      <option value="America/New_York">New York (EST/EDT)</option>
+      <option value="Europe/London">London (GMT/BST)</option>
+      <option value="Asia/Dhaka">Dhaka (BST)</option>
+      <option value="Asia/Kolkata">Kolkata (IST)</option>
+      <option value="Asia/Tokyo">Tokyo (JST)</option>
+      <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+    </select>
+
+    <div class="result" id="result">Converted Time: —</div>
+  </div>
+
+  <script>
+    const dateInput = document.getElementById('dateInput');
+    const timeInput = document.getElementById('timeInput');
+    const fromZone = document.getElementById('fromZone');
+    const toZone = document.getElementById('toZone');
+    const resultDiv = document.getElementById('result');
+
+    // Set default date to today
+    dateInput.valueAsDate = new Date();
+
+    function convertTimeZone() {
+      if (!dateInput.value || !timeInput.value) {
+        resultDiv.textContent = "Converted Time: —";
+        return;
+      }
+
+      // Compose a full datetime string in ISO format: "YYYY-MM-DDTHH:mm"
+      const datetimeStr = `${dateInput.value}T${timeInput.value}:00`;
+
+      try {
+        // Parse as fromZone time
+        // Using Intl.DateTimeFormat to handle time zone conversion
+        const fromDate = new Date(new Date(datetimeStr).toLocaleString("en-US", { timeZone: fromZone.value }));
+
+        // Convert from fromZone to UTC timestamp (milliseconds)
+        const utcTimestamp = fromDate.getTime() + (fromDate.getTimezoneOffset() * 60000);
+
+        // Create date object for toZone by formatting the UTC timestamp in toZone
+        const options = {
+          timeZone: toZone.value,
+          hour12: false,
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        };
+
+        const formatter = new Intl.DateTimeFormat([], options);
+        const parts = formatter.formatToParts(new Date(utcTimestamp));
+
+        let formatted = "";
+        let datePart = "", timePart = "";
+        parts.forEach(({type, value}) => {
+          if (type === "year" || type === "month" || type === "day") {
+            datePart += value;
+            if (type === "month" || type === "day") datePart += "/";
+          } else if (type === "hour" || type === "minute" || type === "second") {
+            timePart += value;
+            if (type === "hour" || type === "minute") timePart += ":";
+          }
+        });
+
+        formatted = `${datePart} ${timePart}`.trim();
+
+        resultDiv.textContent = `Converted Time: ${formatted} (${toZone.options[toZone.selectedIndex].text})`;
+      } catch {
+        resultDiv.textContent = "Invalid date/time or time zone.";
+      }
+    }
+
+    dateInput.addEventListener('change', convertTimeZone);
+    timeInput.addEventListener('input', convertTimeZone);
+    fromZone.addEventListener('change', convertTimeZone);
+    toZone.addEventListener('change', convertTimeZone);
+
+    window.onload = convertTimeZone;
+  </script>
+</body>
+</html>

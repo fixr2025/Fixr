@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Generate unique UUIDs easily with Fixr's UUID Generator tool." />
+  <title>UUID Generator - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: var(--gray);
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      text-align: center;
+    }
+    h1 {
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+    }
+    button {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    button:hover {
+      background-color: #1742c0;
+    }
+    #uuidOutput {
+      margin-top: 1.5rem;
+      word-break: break-all;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: #111;
+      user-select: all;
+      padding: 0.5rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9fafb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>UUID Generator</h1>
+    <button onclick="generateUUID()">Generate UUID</button>
+    <div id="uuidOutput" aria-live="polite" aria-atomic="true" role="region"></div>
+  </div>
+
+  <script>
+    function generateUUID() {
+      const uuid = ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c => 
+        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+      );
+      document.getElementById('uuidOutput').textContent = uuid;
+    }
+  </script>
+</body>
+</html>

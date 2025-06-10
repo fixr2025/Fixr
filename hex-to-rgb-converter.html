@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Convert HEX color codes to RGB format easily using this online HEX to RGB Converter tool by Fixr." />
+  <title>HEX to RGB Converter - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: var(--gray);
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+      color: var(--blue);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-bottom: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1742c0;
+    }
+    .output {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--gray);
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HEX to RGB Converter</h1>
+    <label for="hexInput">Enter HEX Color Code:</label>
+    <input type="text" id="hexInput" placeholder="#1d4ed8" />
+    <button onclick="convertHexToRGB()">Convert</button>
+    <div class="output" id="rgbOutput">RGB Value will appear here</div>
+  </div>
+
+  <script>
+    function convertHexToRGB() {
+      const hex = document.getElementById('hexInput').value.trim();
+      const output = document.getElementById('rgbOutput');
+
+      const validHex = /^#?([a-fA-F0-9]{6})$/;
+      const match = hex.match(validHex);
+
+      if (!match) {
+        output.textContent = 'Invalid HEX code';
+        output.style.color = 'red';
+        return;
+      }
+
+      const cleanHex = match[1];
+      const r = parseInt(cleanHex.substring(0, 2), 16);
+      const g = parseInt(cleanHex.substring(2, 4), 16);
+      const b = parseInt(cleanHex.substring(4, 6), 16);
+
+      output.textContent = `RGB(${r}, ${g}, ${b})`;
+      output.style.color = '#000';
+    }
+  </script>
+</body>
+</html>

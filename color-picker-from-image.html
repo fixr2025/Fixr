@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pick colors directly from images using Fixr's Color Picker from Image tool." />
+  <title>Color Picker from Image - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--gray);
+      margin: 0;
+      padding: 2rem 1rem;
+    }
+    .container {
+      max-width: 600px;
+      background: var(--white);
+      margin: auto;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    h1 {
+      color: var(--blue);
+    }
+    input[type="file"] {
+      margin: 1rem 0;
+    }
+    canvas {
+      max-width: 100%;
+      border: 1px solid #ccc;
+      margin-top: 1rem;
+    }
+    .color-result {
+      margin-top: 1rem;
+      font-weight: bold;
+      color: var(--blue);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Color Picker from Image</h1>
+    <input type="file" id="upload" accept="image/*" />
+    <canvas id="canvas"></canvas>
+    <div class="color-result" id="colorResult">Click on the image to pick a color</div>
+  </div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    const colorResult = document.getElementById('colorResult');
+
+    upload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const img = new Image();
+        img.onload = function () {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+        };
+        img.src = event.target.result;
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    canvas.addEventListener('click', function (e) {
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const pixel = ctx.getImageData(x, y, 1, 1).data;
+      const rgb = `rgb(${pixel[0]}, ${pixel[1]}, ${pixel[2]})`;
+      colorResult.textContent = `Picked Color: ${rgb}`;
+      colorResult.style.backgroundColor = rgb;
+    });
+  </script>
+</body>
+</html>

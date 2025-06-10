@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Generate beautiful color palettes with Fixr's Palette Generator tool." />
+  <title>Palette Generator - Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --gray: #f3f4f6;
+      --white: #ffffff;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background: var(--gray);
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    h1 {
+      color: var(--blue);
+      text-align: center;
+    }
+    .palette {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+      gap: 10px;
+      justify-content: center;
+    }
+    .color-box {
+      width: 100px;
+      height: 100px;
+      border-radius: 8px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    button {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    button:hover {
+      background-color: #1742c0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Palette Generator</h1>
+    <button onclick="generatePalette()">Generate New Palette</button>
+    <div class="palette" id="palette"></div>
+  </div>
+
+  <script>
+    function randomColor() {
+      const r = Math.floor(Math.random() * 256);
+      const g = Math.floor(Math.random() * 256);
+      const b = Math.floor(Math.random() * 256);
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+
+    function generatePalette() {
+      const paletteContainer = document.getElementById('palette');
+      paletteContainer.innerHTML = '';
+      for (let i = 0; i < 5; i++) {
+        const color = randomColor();
+        const colorBox = document.createElement('div');
+        colorBox.className = 'color-box';
+        colorBox.style.backgroundColor = color;
+        colorBox.textContent = color;
+        paletteContainer.appendChild(colorBox);
+      }
+    }
+
+    window.onload = generatePalette;
+  </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Sort your text alphabetically with Fixr's fast, mobile-responsive Text Sorter tool.">
+  <title>Text Sorter – Fixr Tools</title>
+  <style>
+    :root {
+      --blue: #1d4ed8;
+      --white: #ffffff;
+      --gray: #f3f4f6;
+    }
+
+    body {
+      margin: 0;
+      padding: 1rem;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--gray);
+      color: #1f2937;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: var(--white);
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--blue);
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    textarea {
+      width: 100%;
+      height: 180px;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      resize: vertical;
+      margin-bottom: 1rem;
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    button {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      padding: 10px 16px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Text Sorter</h1>
+    <textarea id="textInput" placeholder="Enter lines of text here..."></textarea>
+
+    <div class="buttons">
+      <button onclick="sortText(true)">Sort A → Z</button>
+      <button onclick="sortText(false)">Sort Z → A</button>
+      <button onclick="clearText()">Clear</button>
+      <button onclick="copyText()">Copy</button>
+    </div>
+  </div>
+
+  <script>
+    function sortText(ascending = true) {
+      const input = document.getElementById('textInput').value;
+      const lines = input.split('\n').filter(line => line.trim() !== '');
+      const sorted = lines.sort((a, b) => ascending ? a.localeCompare(b) : b.localeCompare(a));
+      document.getElementById('textInput').value = sorted.join('\n');
+    }
+
+    function clearText() {
+      document.getElementById('textInput').value = '';
+    }
+
+    function copyText() {
+      const textArea = document.getElementById('textInput');
+      textArea.select();
+      document.execCommand('copy');
+      alert('Text copied to clipboard!');
+    }
+  </script>
+</body>
+</html>

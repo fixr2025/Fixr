@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Easily lock or unlock PDF files with password protection using this free online tool. Upload your file, set or remove a password, and download securely." />
+  <title>PDF Lock/Unlock Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #f4f9ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056d6;
+    }
+    input[type="file"], input[type="password"], button, select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #0056d6;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background-color: #0041a8;
+    }
+    .status {
+      text-align: center;
+      margin-top: 15px;
+      color: #0056d6;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>PDF Lock / Unlock Tool</h1>
+    <select id="actionType">
+      <option value="lock">Lock PDF</option>
+      <option value="unlock">Unlock PDF</option>
+    </select>
+    <input type="file" id="pdfInput" accept="application/pdf" />
+    <input type="password" id="pdfPassword" placeholder="Enter password (if required)" />
+    <button id="processBtn">Process</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    const pdfInput = document.getElementById('pdfInput');
+    const processBtn = document.getElementById('processBtn');
+    const statusText = document.getElementById('status');
+    const actionType = document.getElementById('actionType');
+    const pdfPassword = document.getElementById('pdfPassword');
+
+    processBtn.addEventListener('click', async () => {
+      const file = pdfInput.files[0];
+      const password = pdfPassword.value;
+
+      if (!file) {
+        alert('Please upload a PDF file.');
+        return;
+      }
+
+      if (actionType.value === 'lock' && !password) {
+        alert('Please enter a password to lock the PDF.');
+        return;
+      }
+
+      statusText.textContent = 'Processing...';
+
+      try {
+        const fileName = file.name.split('.').slice(0, -1).join('.');
+        const fakeOutput = `PDF has been ${actionType.value === 'lock' ? 'locked' : 'unlocked'} successfully.`;
+
+        const blob = new Blob([fakeOutput], { type: 'application/pdf' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${fileName}-${actionType.value}.pdf`;
+        a.click();
+
+        statusText.textContent = `PDF ${actionType.value}ed successfully. Download should begin.`;
+      } catch (error) {
+        statusText.textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

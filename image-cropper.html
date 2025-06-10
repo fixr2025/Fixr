@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free online image crop tool. Crop, preview, and download images easily. Fully mobile-responsive and SEO-friendly." />
+  <title>Image Crop Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 20px;
+      color: #000;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #f4f9ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #0056d6;
+    }
+
+    input[type="file"], button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      background-color: #0056d6;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #0041a8;
+    }
+
+    canvas, .preview img {
+      width: 100%;
+      border-radius: 6px;
+      border: 2px solid #0056d6;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Image Cropper Tool</h1>
+    <input type="file" id="imageInput" accept="image/*">
+    <canvas id="canvas"></canvas>
+    <button onclick="cropImage()">Crop & Download</button>
+    <div class="preview" id="previewContainer"></div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    let img = new Image();
+    let cropStartX, cropStartY, cropEndX, cropEndY;
+    let dragging = false;
+    let imageLoaded = false;
+
+    document.getElementById('imageInput').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          imageLoaded = true;
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    canvas.addEventListener('mousedown', function(e) {
+      if (!imageLoaded) return;
+      const rect = canvas.getBoundingClientRect();
+      cropStartX = e.clientX - rect.left;
+      cropStartY = e.clientY - rect.top;
+      dragging = true;
+    });
+
+    canvas.addEventListener('mouseup', function(e) {
+      if (!dragging) return;
+      const rect = canvas.getBoundingClientRect();
+      cropEndX = e.clientX - rect.left;
+      cropEndY = e.clientY - rect.top;
+      dragging = false;
+      drawCropRect();
+    });
+
+    function drawCropRect() {
+      ctx.drawImage(img, 0, 0);
+      ctx.strokeStyle = '#0056d6';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(cropStartX, cropStartY, cropEndX - cropStartX, cropEndY - cropStartY);
+    }
+
+    function cropImage() {
+      if (!imageLoaded || cropStartX === undefined || cropEndX === undefined) {
+        alert('Please select a crop area.');
+        return;
+      }
+
+      const cropWidth = cropEndX - cropStartX;
+      const cropHeight = cropEndY - cropStartY;
+
+      const cropCanvas = document.createElement('canvas');
+      cropCanvas.width = cropWidth;
+      cropCanvas.height = cropHeight;
+      const cropCtx = cropCanvas.getContext('2d');
+      cropCtx.drawImage(canvas, cropStartX, cropStartY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
+
+      cropCanvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'cropped-image.png';
+        link.click();
+
+        const previewImg = new Image();
+        previewImg.src = url;
+        const previewContainer = document.getElementById('previewContainer');
+        previewContainer.innerHTML = '';
+        previewContainer.appendChild(previewImg);
+      });
+    }
+  </script>
+</body>
+</html>

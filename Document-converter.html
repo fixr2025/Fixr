@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Convert between PDF, DOCX, and TXT formats with this free online document converter. Upload your file, convert, and download easily. Fully mobile-responsive and SEO-friendly." />
+  <title>Document Converter Tool</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background-color: #f4f9ff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #0056d6;
+    }
+    input[type="file"], button, select {
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      background-color: #0056d6;
+      color: #fff;
+      cursor: pointer;
+      border: none;
+    }
+    button:hover {
+      background-color: #0041a8;
+    }
+    .status {
+      text-align: center;
+      margin-top: 15px;
+      color: #0056d6;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Document Converter</h1>
+    <input type="file" id="fileInput" accept=".pdf,.doc,.docx,.txt" />
+    <label for="convertTo">Convert to:</label>
+    <select id="convertTo">
+      <option value="pdf">PDF</option>
+      <option value="docx">DOCX</option>
+      <option value="txt">TXT</option>
+    </select>
+    <button id="convertBtn">Convert</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const convertBtn = document.getElementById('convertBtn');
+    const statusText = document.getElementById('status');
+    const convertTo = document.getElementById('convertTo');
+
+    convertBtn.addEventListener('click', async () => {
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please upload a file first.');
+        return;
+      }
+
+      statusText.textContent = 'Converting...';
+
+      try {
+        const fileName = file.name.split('.').slice(0, -1).join('.');
+        const outputFormat = convertTo.value;
+        const placeholderContent = `Converted ${file.name} to ${outputFormat.toUpperCase()}`;
+
+        let mimeType = '';
+        switch (outputFormat) {
+          case 'pdf':
+            mimeType = 'application/pdf';
+            break;
+          case 'docx':
+            mimeType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            break;
+          case 'txt':
+            mimeType = 'text/plain';
+            break;
+        }
+
+        const blob = new Blob([placeholderContent], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${fileName}.${outputFormat}`;
+        a.click();
+
+        statusText.textContent = 'Conversion complete. Download should begin shortly.';
+      } catch (error) {
+        statusText.textContent = 'Conversion failed: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>

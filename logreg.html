@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Create your free Fixr account to save preferences and access tools faster. Register with your email in seconds." />
+  <link rel="canonical" href="https://fixr.site/register" />
+  <title>Register – Fixr</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Register – Fixr" />
+  <meta property="og:description" content="Create your free Fixr account to save preferences and access tools faster." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://fixr.site/register" />
+  <meta property="og:site_name" content="Fixr" />
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Register – Fixr",
+    "url": "https://fixr.site/register",
+    "description": "Create your free Fixr account to save preferences and access tools faster.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Fixr",
+      "url": "https://fixr.site",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://fixr.site/favicon-48.png"
+      }
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --blue:#1d4ed8; /* royal blue */
+      --blue-700:#1742c0;
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --ring:#93c5fd;
+      --danger:#dc2626;
+      --success:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);}
+    header,footer{background:var(--blue);color:#fff}
+    header{display:flex;gap:1rem;align-items:center;justify-content:space-between;padding:1rem 1.25rem;flex-wrap:wrap}
+    .logo{font-weight:700;font-size:1.4rem;letter-spacing:.3px}
+    nav{display:flex;gap:1rem;flex-wrap:wrap}
+    nav a{color:#fff;text-decoration:none;font-weight:600}
+    nav a:hover{text-decoration:underline}
+    .email-note{font-size:.9rem;opacity:.9}
+
+    main{max-width:880px;margin:2rem auto;padding:0 1rem}
+
+    .card{background:var(--card);border-radius:14px;box-shadow:0 12px 30px rgba(29,78,216,.12);padding:2rem;display:grid;grid-template-columns:1.1fr .9fr;gap:2rem}
+    .hero-copy h1{margin:.2rem 0 0;font-size:2rem;color:var(--blue)}
+    .hero-copy p{color:var(--muted);margin:.5rem 0 0}
+
+    form{display:grid;gap:1rem}
+    label{font-weight:600}
+    .field{display:flex;flex-direction:column;gap:.35rem}
+    input,select{appearance:none;background:#fff;border:1.5px solid #e5e7eb;border-radius:10px;padding:.8rem 1rem;font-size:1rem;outline:none;transition:border-color .2s, box-shadow .2s}
+    input:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 4px var(--ring)}
+    .pw-wrap{position:relative}
+    .toggle-eye{position:absolute;right:.7rem;top:50%;transform:translateY(-50%);cursor:pointer;font-size:.95rem;color:#6b7280}
+
+    .help{font-size:.88rem;color:var(--muted)}
+    .error{font-size:.88rem;color:var(--danger);display:none}
+
+    .meter{height:8px;border-radius:999px;background:#e5e7eb;overflow:hidden}
+    .meter > span{display:block;height:100%;width:0;background:var(--danger);transition:width .25s ease, background-color .25s ease}
+
+    .terms{display:flex;align-items:flex-start;gap:.6rem}
+    .terms input{margin-top:.2rem}
+
+    .btn{background:var(--blue);border:none;color:#fff;font-weight:700;padding:.9rem 1rem;border-radius:12px;cursor:pointer}
+    .btn:hover{background:var(--blue-700)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+
+    .alt{font-size:.95rem;color:var(--muted)}
+
+    .aside{background:#eef2ff;border:1px dashed #c7d2fe;border-radius:12px;padding:1rem}
+    .aside h3{margin:.3rem 0;color:var(--blue)}
+    .aside ul{margin:.2rem 0 0 1rem}
+
+    .toast{margin-top:1rem;display:none;padding:.8rem 1rem;border-radius:10px}
+    .toast.success{background:#ecfdf5;color:#065f46}
+    .toast.error{background:#fef2f2;color:#7f1d1d}
+
+    footer{margin-top:3rem;text-align:center;padding:1rem}
+    footer a{color:#cbd5e1;text-decoration:none}
+    footer a:hover{text-decoration:underline}
+
+    @media (max-width:900px){
+      .card{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">Fixr</div>
+  <nav aria-label="Primary">
+    <a href="/">Home</a>
+    <a href="/tools">Tools</a>
+    <a href="/contact">Contact</a>
+  </nav>
+  <div class="email-note">Contact: fixr.site@gmail.com</div>
+</header>
+
+<main>
+  <div class="card" role="region" aria-labelledby="register-title">
+    <div class="hero-copy">
+      <h1 id="register-title">Create your Fixr account</h1>
+      <p>Register to personalize your experience and get faster access to your favorite tools. It's free and takes under a minute.</p>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" autocomplete="name" required placeholder="John Doe" />
+          <div class="error" id="nameError">Please enter your full name.</div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@example.com" />
+          <div class="error" id="emailError">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input id="password" name="password" type="password" minlength="8" required placeholder="At least 8 characters" aria-describedby="pwHelp" />
+            <button type="button" class="toggle-eye" aria-pressed="false" aria-label="Show password" id="togglePw">👁️</button>
+          </div>
+          <div class="help" id="pwHelp">Use at least 8 characters with a mix of letters and numbers.</div>
+          <div class="meter" aria-hidden="true"><span id="pwMeter"></span></div>
+        </div>
+
+        <div class="field">
+          <label for="confirm">Confirm password</label>
+          <input id="confirm" name="confirm" type="password" required placeholder="Retype your password" />
+          <div class="error" id="confirmError">Passwords do not match.</div>
+        </div>
+
+        <div class="terms">
+          <input id="tos" type="checkbox" required aria-describedby="tosNote" />
+          <label for="tos">I agree to the <a href="/terms" target="_self">Terms of Use</a> and <a href="/privacy-policy" target="_self">Privacy Policy</a>.</label>
+        </div>
+        <div class="help" id="tosNote">We never ask for your phone number. Contact us via email only: <a href="mailto:fixr.site@gmail.com">fixr.site@gmail.com</a>.</div>
+
+        <!-- If you add reCAPTCHA later, place it here -->
+
+        <button class="btn" type="submit" id="submitBtn">Create account</button>
+        <div class="toast success" id="successToast" role="status" aria-live="polite">Account created locally. Connect a backend to enable real sign-ups.</div>
+        <div class="toast error" id="failToast" role="alert">Please fix the errors above and try again.</div>
+
+        <div class="alt">Already have an account? <a href="/login">Log in</a></div>
+      </form>
+    </div>
+
+    <aside class="aside" aria-label="Why register?">
+      <h3>Why create an account?</h3>
+      <ul>
+        <li>Save your favorite tools & preferences</li>
+        <li>Sync settings across devices</li>
+        <li>Access upcoming pro features first</li>
+      </ul>
+      <h3>Security tips</h3>
+      <ul>
+        <li>Use a unique password for Fixr</li>
+        <li>Avoid personal info in passwords</li>
+        <li>Never share your credentials via email</li>
+      </ul>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  &copy; 2025 Fixr · <a href="/privacy-policy">Privacy Policy</a> · <a href="/terms">Terms of Use</a> · Contact: fixr.site@gmail.com
+</footer>
+
+<script>
+  const form = document.getElementById('registerForm');
+  const nameInput = document.getElementById('name');
+  const emailInput = document.getElementById('email');
+  const pwInput = document.getElementById('password');
+  const confirmInput = document.getElementById('confirm');
+  const nameError = document.getElementById('nameError');
+  const emailError = document.getElementById('emailError');
+  const confirmError = document.getElementById('confirmError');
+  const pwMeterBar = document.getElementById('pwMeter');
+  const successToast = document.getElementById('successToast');
+  const failToast = document.getElementById('failToast');
+  const submitBtn = document.getElementById('submitBtn');
+
+  function emailValid(v){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+  }
+
+  function pwScore(v){
+    let s = 0;
+    if(v.length >= 8) s += 25;
+    if(/[A-Z]/.test(v)) s += 20;
+    if(/[a-z]/.test(v)) s += 20;
+    if(/[0-9]/.test(v)) s += 20;
+    if(/[^A-Za-z0-9]/.test(v)) s += 15;
+    return Math.min(s, 100);
+  }
+
+  function updateMeter(){
+    const score = pwScore(pwInput.value);
+    pwMeterBar.style.width = score + '%';
+    pwMeterBar.style.backgroundColor = score < 40 ? '#dc2626' : score < 70 ? '#f59e0b' : '#16a34a';
+  }
+
+  document.getElementById('togglePw').addEventListener('click', function(){
+    const showing = pwInput.type === 'text';
+    pwInput.type = showing ? 'password' : 'text';
+    this.setAttribute('aria-pressed', String(!showing));
+    this.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+  });
+
+  pwInput.addEventListener('input', updateMeter);
+
+  function show(el){ el.style.display = 'block'; }
+  function hide(el){ el.style.display = 'none'; }
+
+  function validate(){
+    let ok = true;
+    // Name
+    if(!nameInput.value.trim()) { show(nameError); ok = false; } else { hide(nameError); }
+    // Email
+    if(!emailValid(emailInput.value.trim())) { show(emailError); ok = false; } else { hide(emailError); }
+    // Confirm password
+    if(pwInput.value !== confirmInput.value || !pwInput.value) { show(confirmError); ok = false; } else { hide(confirmError); }
+    return ok;
+  }
+
+  [nameInput, emailInput, pwInput, confirmInput].forEach(i=>{
+    i.addEventListener('input', ()=>{ validate(); hide(successToast); hide(failToast); });
+  });
+
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    hide(successToast); hide(failToast);
+    if(validate()){
+      // Demo-only: store locally so you can test without a backend
+      const payload = {
+        name: nameInput.value.trim(),
+        email: emailInput.value.trim(),
+        createdAt: new Date().toISOString()
+      };
+      try{
+        const existing = JSON.parse(localStorage.getItem('fixr_users')||'[]');
+        existing.push(payload);
+        localStorage.setItem('fixr_users', JSON.stringify(existing));
+        show(successToast);
+        form.reset();
+        updateMeter();
+      }catch(err){
+        show(failToast);
+      }
+    } else {
+      show(failToast);
+    }
+  });
+
+  // Initialize meter state
+  updateMeter();
+</script>
+</body>
+</html>

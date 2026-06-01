@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html b:css='false' b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true'
+  xmlns='http://www.w3.org/1999/xhtml'
+  xmlns:b='http://www.google.com/2005/gml/b'
+  xmlns:data='http://www.google.com/2005/gml/data'
+  xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta charset='UTF-8'/>
+<meta content='width=device-width,initial-scale=1.0,shrink-to-fit=no' name='viewport'/>
+<meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<meta content='#0a0a0f' name='theme-color'/>
+<meta content='yes' name='mobile-web-app-capable'/>
+<meta content='yes' name='apple-mobile-web-app-capable'/>
+
+<b:if cond='data:blog.pageType == &quot;item&quot;'>
+  <title><data:blog.pageName/> | CineFix</title>
+  <meta expr:content='data:blog.metaDescription' name='description'/>
+<b:elseif cond='data:blog.pageType == &quot;index&quot;'/>
+  <title>CineFix - Watch Movies, TV Shows and Web Series Online Free HD</title>
+  <meta content='CineFix is your free HD streaming site. Watch the latest Movies, TV Shows, Turkish Series, K-Dramas, Bollywood, Hollywood and Web Series. No sign-up. 100% Free.' name='description'/>
+<b:else/>
+  <title><data:blog.pageName/> | CineFix</title>
+  <meta expr:content='data:blog.metaDescription' name='description'/>
+</b:if>
+<meta content='watch movies online free, free streaming site, watch tv shows online, web series free, HD movies, Bollywood, Hollywood, Turkish series, K-Drama, CineFix' name='keywords'/>
+<meta content='index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1' name='robots'/>
+<meta content='CineFix' name='author'/>
+<link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+<meta content='website' property='og:type'/>
+<meta expr:content='data:blog.pageTitle' property='og:title'/>
+<meta expr:content='data:blog.metaDescription' property='og:description'/>
+<meta content='CineFix' property='og:site_name'/>
+<meta content='summary_large_image' name='twitter:card'/>
+<meta expr:content='data:blog.pageTitle' name='twitter:title'/>
+
+<link href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap' rel='stylesheet'/>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css' rel='stylesheet' crossorigin='anonymous'/>
+
+<b:skin><![CDATA[
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0f;--s1:#111118;--s2:#16161f;--s3:#1d1d2a;--s4:#252535;
+  --red:#e50914;--red-dim:rgba(229,9,20,.12);--red-glow:rgba(229,9,20,.35);
+  --blue:#0ea5e9;--blue-dim:rgba(14,165,233,.12);
+  --violet:#7c3aed;--gold:#f59e0b;--green:#10b981;
+  --text1:#f0f4f8;--text2:#b8c0cc;--text3:rgba(255,255,255,.42);--text4:rgba(255,255,255,.22);
+  --b1:rgba(255,255,255,.07);--b2:rgba(255,255,255,.12);
+  --grad:linear-gradient(135deg,#0ea5e9,#7c3aed,#e50914);
+  --font:'Plus Jakarta Sans',sans-serif;
+  --r6:6px;--r10:10px;--r14:14px;--r20:20px;--trans:.22s ease;
+}
+html,body{background:var(--bg);color:var(--text1);font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+button{font-family:var(--font);cursor:pointer}
+#navbar-iframe{display:none!important}
+
+#cf-prog{position:fixed;top:0;left:0;right:0;height:3px;z-index:9999;background:rgba(255,255,255,.05)}
+#cf-prog-bar{height:100%;width:0;background:var(--grad);transition:width .3s ease}
+
+#cf-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--s3);border:1px solid var(--b2);color:var(--text1);font-size:13px;font-weight:600;padding:10px 20px;border-radius:var(--r10);z-index:9998;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap}
+#cf-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+#cf-sidebar{position:fixed;left:0;top:0;bottom:0;width:240px;background:var(--s1);border-right:1px solid var(--b1);z-index:500;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;transition:transform var(--trans)}
+#cf-sidebar::-webkit-scrollbar{width:4px}
+#cf-sidebar::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+.cf-sidebar-logo{display:flex;align-items:center;gap:10px;padding:18px 20px;cursor:pointer;border-bottom:1px solid var(--b1)}
+.cf-logo-icon{width:34px;height:34px;border-radius:9px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;flex-shrink:0;box-shadow:0 0 18px var(--red-glow)}
+.cf-logo-text{font-size:20px;font-weight:800;letter-spacing:1.5px;color:var(--text1)}
+.cf-logo-text span{color:var(--red)}
+.cf-nav-section{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--text4);text-transform:uppercase;padding:16px 20px 6px}
+.cf-nav-item{display:flex;align-items:center;gap:12px;padding:10px 20px;cursor:pointer;transition:background var(--trans),color var(--trans);color:var(--text3);font-size:13px;font-weight:500;margin:1px 8px;border-radius:var(--r10);position:relative}
+.cf-nav-item:hover{background:var(--s3);color:var(--text1)}
+.cf-nav-item.active{background:var(--red-dim);color:var(--red)}
+.cf-nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--red);border-radius:0 3px 3px 0}
+.cf-nav-item i{width:16px;text-align:center;font-size:14px}
+.cf-live-badge{background:var(--red);color:#fff;font-size:9px;font-weight:800;padding:2px 5px;border-radius:4px;letter-spacing:.5px;margin-left:auto;animation:livePulse 1.5s infinite}
+@keyframes livePulse{0%,100%{opacity:1}50%{opacity:.6}}
+.cf-sidebar-user{display:flex;align-items:center;gap:12px;padding:14px 20px;margin-top:auto;border-top:1px solid var(--b1)}
+.cf-user-avatar{width:34px;height:34px;border-radius:50%;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:700;flex-shrink:0}
+.cf-user-name{font-size:13px;font-weight:700;color:var(--text1)}
+.cf-user-plan{font-size:11px;color:var(--red);font-weight:600}
+#cf-overlay{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:499;display:none;backdrop-filter:blur(4px)}
+#cf-overlay.on{display:block}
+
+#cf-main{margin-left:240px;min-height:100vh;display:flex;flex-direction:column}
+#cf-header{position:sticky;top:0;z-index:400;background:rgba(10,10,15,.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--b1);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:box-shadow var(--trans)}
+#cf-header.scrolled{box-shadow:0 4px 24px rgba(0,0,0,.4)}
+.cf-header-left{display:flex;align-items:center;gap:12px}
+.cf-mob-menu{display:none;background:none;border:none;color:var(--text1);font-size:18px;padding:6px}
+.cf-breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text3)}
+.cf-breadcrumb span{color:var(--text1);font-weight:700}
+.cf-header-tabs{display:flex;align-items:center;gap:4px;background:var(--s2);border-radius:var(--r20);padding:4px;position:absolute;left:50%;transform:translateX(-50%)}
+.cf-tab{padding:7px 18px;border-radius:var(--r20);font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;transition:all var(--trans);border:none;background:none}
+.cf-tab.active,.cf-tab:hover{background:var(--red);color:#fff}
+.cf-header-right{display:flex;align-items:center;gap:10px}
+.cf-search-box{display:flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--b1);border-radius:var(--r20);padding:8px 16px;width:220px;transition:all var(--trans);position:relative}
+.cf-search-box:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-dim)}
+.cf-search-box input{background:none;border:none;outline:none;color:var(--text1);font-size:13px;font-family:var(--font);width:100%}
+.cf-search-box input::placeholder{color:var(--text4)}
+.cf-search-box i{color:var(--text3);font-size:13px}
+.cf-icon-btn{width:36px;height:36px;border-radius:var(--r10);background:var(--s2);border:1px solid var(--b1);color:var(--text2);display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all var(--trans)}
+.cf-icon-btn:hover{background:var(--s3);color:var(--text1)}
+#cf-pages{flex:1;position:relative}
+.cf-page{display:none;min-height:calc(100vh - 60px)}
+.cf-page.active{display:block}
+.cf-container{max-width:1400px;margin:0 auto;padding:24px}
+
+#cf-spotlight{position:relative;height:520px;overflow:hidden;background:var(--bg)}
+.cf-sp-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.cf-sp-slide.active{opacity:1}
+.cf-sp-bg{width:100%;height:100%;object-fit:cover;filter:brightness(.45)}
+.cf-sp-grad{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,15,.97) 0%,rgba(10,10,15,.6) 50%,rgba(10,10,15,.1) 100%)}
+.cf-sp-grad2{position:absolute;bottom:0;left:0;right:0;height:160px;background:linear-gradient(to top,var(--bg),transparent)}
+.cf-sp-content{position:absolute;bottom:60px;left:32px;max-width:520px;z-index:10}
+.cf-sp-badges{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.cf-sp-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r6);letter-spacing:.5px}
+.cf-badge-4k{background:var(--blue-dim);color:var(--blue);border:1px solid rgba(14,165,233,.25)}
+.cf-badge-new{background:var(--red-dim);color:var(--red);border:1px solid rgba(229,9,20,.25)}
+.cf-sp-title{font-size:clamp(26px,4vw,46px);font-weight:800;line-height:1.2;color:#fff;margin-bottom:10px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.cf-sp-meta{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2);margin-bottom:12px;flex-wrap:wrap}
+.cf-sp-rating{display:flex;align-items:center;gap:5px;color:var(--gold);font-weight:700}
+.cf-sp-dot{width:4px;height:4px;border-radius:50%;background:var(--text3)}
+.cf-sp-desc{font-size:14px;color:var(--text2);line-height:1.65;margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cf-sp-btns{display:flex;gap:12px;flex-wrap:wrap}
+.cf-btn-watch{display:flex;align-items:center;gap:8px;padding:13px 28px;border-radius:var(--r14);background:var(--red);border:none;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all var(--trans);box-shadow:0 6px 20px var(--red-glow)}
+.cf-btn-watch:hover{background:#ff1a24;transform:translateY(-2px)}
+.cf-btn-info{display:flex;align-items:center;gap:8px;padding:13px 24px;border-radius:var(--r14);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;font-size:14px;font-weight:600;cursor:pointer;backdrop-filter:blur(8px);transition:all var(--trans)}
+.cf-btn-info:hover{background:rgba(255,255,255,.2)}
+.cf-sp-dots{position:absolute;bottom:24px;left:32px;display:flex;gap:8px;z-index:10}
+.cf-sp-dot-btn{width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,.3);cursor:pointer;border:none;padding:0;transition:all var(--trans)}
+.cf-sp-dot-btn.active{background:var(--red);width:40px}
+.cf-sp-thumbs{position:absolute;right:24px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:10}
+.cf-sp-thumb{width:72px;height:48px;border-radius:var(--r6);object-fit:cover;cursor:pointer;border:2px solid transparent;opacity:.55;transition:all var(--trans)}
+.cf-sp-thumb.active{border-color:var(--red);opacity:1}
+
+.cf-section{margin-bottom:36px}
+.cf-section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cf-section-left{display:flex;align-items:center;gap:12px}
+.cf-section-icon{width:36px;height:36px;border-radius:var(--r10);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid}
+.cf-icon-red{background:var(--red-dim);color:var(--red);border-color:rgba(229,9,20,.25)}
+.cf-icon-blue{background:var(--blue-dim);color:var(--blue);border-color:rgba(14,165,233,.25)}
+.cf-icon-gold{background:rgba(245,158,11,.12);color:var(--gold);border-color:rgba(245,158,11,.25)}
+.cf-icon-green{background:rgba(16,185,129,.12);color:var(--green);border-color:rgba(16,185,129,.25)}
+.cf-icon-violet{background:rgba(124,58,237,.12);color:var(--violet);border-color:rgba(124,58,237,.25)}
+.cf-section-title{font-size:18px;font-weight:800;color:var(--text1)}
+.cf-section-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.cf-view-all{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--blue);cursor:pointer;transition:gap var(--trans)}
+.cf-view-all:hover{gap:10px}
+.cf-row{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.cf-row::-webkit-scrollbar{display:none}
+
+.cf-card{flex-shrink:0;width:150px;cursor:pointer;transition:transform var(--trans)}
+.cf-card:hover{transform:translateY(-4px)}
+.cf-card-poster{width:150px;height:225px;border-radius:var(--r10);background:var(--s2);position:relative;overflow:hidden}
+.cf-card-img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.cf-card:hover .cf-card-img{transform:scale(1.05)}
+.cf-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.95) 0%,transparent 50%);opacity:0;transition:opacity var(--trans)}
+.cf-card:hover .cf-card-overlay{opacity:1}
+.cf-card-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);width:44px;height:44px;border-radius:50%;background:rgba(229,9,20,.9);display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px;transition:transform var(--trans)}
+.cf-card:hover .cf-card-play{transform:translate(-50%,-50%) scale(1)}
+.cf-card-rating{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.75);color:var(--gold);font-size:10px;font-weight:800;padding:3px 6px;border-radius:var(--r6);display:flex;align-items:center;gap:3px;backdrop-filter:blur(4px)}
+.cf-card-info{padding:8px 4px 0}
+.cf-card-title{font-size:13px;font-weight:700;color:var(--text1);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:4px}
+.cf-card-meta{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text3)}
+.cf-card-genre{font-size:10px;font-weight:600;padding:2px 6px;border-radius:4px;background:var(--s3);color:var(--text2)}
+.cf-skel{background:linear-gradient(90deg,var(--s2) 0%,var(--s3) 50%,var(--s2) 100%);background-size:200% 100%;animation:skelAnim 1.5s infinite;border-radius:var(--r10)}
+@keyframes skelAnim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.cf-land-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cf-land-card{position:relative;border-radius:var(--r14);overflow:hidden;aspect-ratio:16/9;cursor:pointer;background:var(--s2)}
+.cf-land-card img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.cf-land-card:hover img{transform:scale(1.04)}
+.cf-land-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,15,.92) 0%,transparent 60%)}
+.cf-land-title{position:absolute;bottom:16px;left:16px;right:16px;font-size:14px;font-weight:700;color:#fff}
+
+.cf-ad{display:flex;justify-content:center;width:100%;margin:8px 0 18px;overflow:hidden}
+.cf-ad-728{max-width:728px;width:100%}
+@media(max-width:750px){.cf-ad-728{display:none}}
+
+.cf-filter-bar{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.cf-filter-label{font-size:13px;font-weight:700;color:var(--text3)}
+.cf-select{background:var(--s2);border:1px solid var(--b1);color:var(--text1);font-size:13px;font-family:var(--font);padding:8px 12px;border-radius:var(--r10);outline:none;cursor:pointer}
+.cf-select option{background:var(--s3)}
+.cf-filter-count{font-size:13px;color:var(--text3);margin-left:auto}
+.cf-browse-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
+.cf-load-more{display:flex;justify-content:center;margin-top:24px}
+.cf-btn-load{display:flex;align-items:center;gap:8px;padding:13px 32px;border-radius:var(--r14);background:var(--s2);border:1px solid var(--b1);color:var(--text1);font-size:14px;font-weight:600;cursor:pointer;transition:all var(--trans)}
+.cf-btn-load:hover{background:var(--s3);border-color:var(--blue);color:var(--blue)}
+.cf-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 20px;text-align:center;gap:16px}
+.cf-empty-icon{font-size:52px;color:var(--text4)}
+.cf-empty-title{font-size:18px;font-weight:700;color:var(--text2)}
+.cf-empty-sub{font-size:14px;color:var(--text3)}
+
+.cf-detail-hero{position:relative;height:420px;overflow:hidden;border-radius:var(--r20);margin-bottom:28px}
+.cf-detail-hero img{width:100%;height:100%;object-fit:cover}
+.cf-detail-hero-grad{position:absolute;inset:0;background:linear-gradient(to top,var(--bg) 0%,rgba(10,10,15,.4) 60%,transparent 100%)}
+.cf-detail-info{position:absolute;bottom:24px;left:24px;right:24px;z-index:2}
+.cf-detail-title{font-size:clamp(22px,4vw,38px);font-weight:800;color:#fff;margin-bottom:10px}
+.cf-detail-meta{display:flex;align-items:center;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--text2);margin-bottom:16px}
+.cf-player-wrap{position:relative;padding-top:56.25%;border-radius:var(--r14);overflow:hidden;background:#000;margin:24px 0}
+.cf-player-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+.cf-blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.cf-blog-card{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r14);overflow:hidden;cursor:pointer;transition:transform var(--trans),box-shadow var(--trans);text-decoration:none;color:inherit;display:block}
+.cf-blog-card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,.5);border-color:var(--b2)}
+.cf-blog-card-img{width:100%;height:170px;object-fit:cover;background:var(--s3)}
+.cf-blog-card-img-placeholder{width:100%;height:170px;background:var(--s3);display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:36px}
+.cf-blog-card-body{padding:16px}
+.cf-blog-card-tag{display:inline-block;background:var(--blue-dim);color:var(--blue);font-size:10px;font-weight:700;padding:3px 8px;border-radius:var(--r20);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px}
+.cf-blog-card-title{font-size:15px;font-weight:700;color:var(--text1);line-height:1.4;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cf-blog-card-desc{font-size:13px;color:var(--text3);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.cf-blog-card-foot{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--text4)}
+.cf-blog-read-more{color:var(--blue);font-weight:600;font-size:12px}
+
+.cf-static{max-width:800px;margin:0 auto;padding:32px 0 60px}
+.cf-static h1{font-size:28px;font-weight:800;color:var(--text1);margin-bottom:6px}
+.cf-static-hero{background:var(--grad);border-radius:var(--r20);padding:32px;text-align:center;margin-bottom:28px}
+.cf-static-hero h1{color:#fff}
+.cf-static-hero p{color:rgba(255,255,255,.75);font-size:14px;margin-top:6px}
+.cf-scard{background:var(--s1);border:1px solid var(--b1);border-radius:var(--r14);padding:22px;margin-bottom:14px}
+.cf-scard h2{font-size:15px;font-weight:700;color:var(--blue);margin-bottom:10px}
+.cf-scard p,.cf-scard li{font-size:14px;color:var(--text2);line-height:1.8;margin-bottom:8px}
+.cf-scard ul{padding-left:20px}
+.cf-scard a{color:var(--blue)}
+.cf-social-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.cf-social-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:var(--r10);color:#fff;font-size:13px;font-weight:700;text-decoration:none;transition:opacity .2s}
+.cf-social-btn:hover{opacity:.85}
+.cf-sfb{background:#1877F2}.cf-sig{background:linear-gradient(135deg,#f09433,#dc2743,#bc1888)}.cf-stw{background:#000;border:1px solid #333}.cf-syt{background:#FF0000}.cf-spt{background:#E60023}
+
+.cf-tv-servers{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.cf-tv-server{padding:8px 18px;border-radius:var(--r10);background:var(--s2);border:1px solid var(--b1);color:var(--text2);font-size:13px;font-weight:600;cursor:pointer;transition:all var(--trans)}
+.cf-tv-server.active{background:var(--red-dim);border-color:rgba(229,9,20,.3);color:var(--red)}
+.cf-tv-player{border-radius:var(--r14);overflow:hidden;background:#000;position:relative;padding-top:56.25%}
+.cf-tv-player iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
+
+#cf-footer{background:var(--s1);border-top:1px solid var(--b1);margin-top:auto}
+.cf-footer-top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--b1);flex-wrap:wrap;gap:12px}
+.cf-footer-brand{display:flex;align-items:center;gap:9px}
+.cf-footer-icon{width:28px;height:28px;border-radius:7px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px}
+.cf-footer-name{font-size:18px;font-weight:800;letter-spacing:1.5px;color:var(--text1)}
+.cf-footer-name span{color:var(--red)}
+.cf-footer-nav{display:flex;flex-wrap:wrap;gap:2px}
+.cf-footer-nav a{font-size:12px;font-weight:500;color:var(--text3);padding:4px 9px;border-radius:var(--r6);transition:color var(--trans);cursor:pointer}
+.cf-footer-nav a:hover{color:var(--text1)}
+.cf-footer-social{display:flex;gap:8px}
+.cf-fsocial{width:32px;height:32px;border-radius:var(--r10);background:var(--s2);border:1px solid var(--b1);display:flex;align-items:center;justify-content:center;color:var(--text2);font-size:13px;text-decoration:none;transition:all var(--trans)}
+.cf-fsocial:hover{background:var(--red);color:#fff;border-color:transparent;transform:translateY(-2px)}
+.cf-footer-bottom{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;flex-wrap:wrap;gap:8px}
+.cf-footer-copy{font-size:11px;color:var(--text4)}
+.cf-footer-badges{display:flex;gap:6px}
+.cf-fbadge{font-size:9px;font-weight:700;padding:2px 7px;border-radius:3px;background:var(--s2);border:1px solid var(--b1);color:var(--text4)}
+.cf-fbadge.hd{color:var(--gold);border-color:rgba(245,158,11,.2)}
+.cf-fbadge.free{color:var(--green);border-color:rgba(16,185,129,.2)}
+.cf-footer-disc{background:rgba(229,9,20,.04);border-top:1px solid rgba(229,9,20,.08);padding:8px 24px;font-size:10px;color:var(--text4);text-align:center;line-height:1.7}
+
+#cf-post-wrapper{background:var(--bg);min-height:100vh}
+.cf-post-header{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(10,10,15,.97);border-bottom:1px solid var(--b1);position:sticky;top:0;z-index:200;backdrop-filter:blur(12px)}
+.cf-post-logo{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text1)}
+.cf-post-logo-icon{width:30px;height:30px;border-radius:8px;background:var(--grad);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px}
+.cf-post-logo-text{font-size:19px;font-weight:800;letter-spacing:1px}
+.cf-post-logo-text span{color:var(--red)}
+.cf-post-nav a{font-size:13px;font-weight:600;color:var(--text3);text-decoration:none;padding:7px 12px;border-radius:var(--r10);transition:all var(--trans);margin-left:4px}
+.cf-post-nav a:hover{background:var(--s2);color:var(--text1)}
+.cf-post-container{max-width:840px;margin:0 auto;padding:36px 20px 80px}
+.cf-post-meta-row{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.cf-post-cat{background:var(--blue-dim);color:var(--blue);font-size:11px;font-weight:700;padding:3px 10px;border-radius:var(--r20);text-transform:uppercase;letter-spacing:.5px}
+.cf-post-date-txt,.cf-post-author-txt{font-size:13px;color:var(--text3)}
+.cf-post-h1{font-size:clamp(22px,4vw,38px);font-weight:800;line-height:1.28;color:var(--text1);margin-bottom:22px}
+.cf-post-featured{width:100%;max-height:460px;object-fit:cover;border-radius:var(--r14);display:block;margin-bottom:28px}
+.cf-post-body{font-size:15px;line-height:1.9;color:rgba(255,255,255,.72)}
+.cf-post-body p{margin-bottom:16px}
+.cf-post-body h2{font-size:22px;font-weight:700;color:var(--text1);margin:28px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--b1)}
+.cf-post-body h3{font-size:18px;font-weight:700;color:var(--blue);margin:22px 0 10px}
+.cf-post-body img{max-width:100%;border-radius:var(--r14);margin:16px auto}
+.cf-post-body a{color:var(--blue)}
+.cf-post-body a:hover{text-decoration:underline}
+.cf-post-body ul,.cf-post-body ol{padding-left:22px;margin-bottom:16px}
+.cf-post-body li{margin-bottom:7px}
+.cf-post-body blockquote{border-left:3px solid var(--blue);padding:14px 18px;margin:18px 0;background:var(--blue-dim);border-radius:0 var(--r14) var(--r14) 0;font-style:italic}
+.cf-post-body table{width:100%;border-collapse:collapse;font-size:13px;margin:16px 0}
+.cf-post-body th{background:rgba(14,165,233,.12);padding:10px;text-align:left;border:1px solid rgba(255,255,255,.1);color:var(--text1)}
+.cf-post-body td{padding:10px;border:1px solid rgba(255,255,255,.07)}
+.cf-post-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:40px;padding-top:24px;border-top:1px solid var(--b1)}
+.cf-btn-home-back{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:var(--r10);background:var(--grad);color:#fff;font-size:14px;font-weight:700;text-decoration:none}
+.cf-btn-wa{display:inline-flex;align-items:center;gap:7px;padding:12px 22px;border-radius:var(--r10);background:#25D366;color:#fff;font-size:14px;font-weight:700;text-decoration:none}
+
+.cf-search-results{position:absolute;top:100%;left:-60px;right:-60px;background:var(--s2);border:1px solid var(--b2);border-radius:var(--r14);max-height:380px;overflow-y:auto;z-index:600;box-shadow:0 16px 48px rgba(0,0,0,.6);margin-top:6px}
+.cf-search-result-item{display:flex;align-items:center;gap:12px;padding:10px 14px;cursor:pointer;transition:background var(--trans);text-decoration:none;color:inherit}
+.cf-search-result-item:hover{background:var(--s3)}
+.cf-sri-img{width:36px;height:52px;object-fit:cover;border-radius:var(--r6);background:var(--s3);flex-shrink:0}
+.cf-sri-title{font-size:13px;font-weight:600;color:var(--text1)}
+.cf-sri-meta{font-size:11px;color:var(--text3);margin-top:2px}
+
+#cf-scroll-top{display:none;position:fixed;bottom:88px;right:20px;z-index:800;width:42px;height:42px;border-radius:50%;background:var(--red);border:none;color:#fff;font-size:15px;cursor:pointer;box-shadow:0 4px 20px var(--red-glow)}
+
+#cf-mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:rgba(10,10,15,.97);border-top:1px solid var(--b1);z-index:600;padding:8px 0 4px;backdrop-filter:blur(16px)}
+.cf-mob-nav-inner{display:flex;justify-content:space-around}
+.cf-mob-btn{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 12px;border-radius:var(--r10);background:none;border:none;color:var(--text3);font-size:11px;font-weight:600;cursor:pointer;transition:color var(--trans);min-width:56px}
+.cf-mob-btn.active,.cf-mob-btn:hover{color:var(--red)}
+.cf-mob-btn i{font-size:18px}
+
+@media(max-width:900px){
+  #cf-sidebar{transform:translateX(-100%)}
+  #cf-sidebar.open{transform:translateX(0)}
+  #cf-main{margin-left:0}
+  .cf-mob-menu{display:flex}
+  #cf-mob-nav{display:block}
+  .cf-header-tabs{position:static;transform:none;display:none}
+  .cf-sp-thumbs{display:none}
+  #cf-pages{padding-bottom:64px}
+  .cf-land-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  .cf-search-box{display:none}
+  #cf-spotlight{height:380px}
+  .cf-sp-content{bottom:40px;left:20px;right:20px;max-width:100%}
+  .cf-land-grid{grid-template-columns:1fr}
+  .cf-container{padding:16px}
+  .cf-footer-social,.cf-footer-nav{display:none}
+  .cf-post-container{padding:22px 14px 60px}
+}
+.hidden{display:none!important}
+]]></b:skin>
+</head>
+
+<body>
+<div id='cf-prog'><div id='cf-prog-bar'></div></div>
+<div id='cf-toast'></div>
+<button id='cf-scroll-top' onclick='window.scrollTo({top:0,behavior:"smooth"})'><i class='fas fa-arrow-up'></i></button>
+
+<b:section class='cf-post-section' id='main-section' maxwidgets='1' name='Blog Posts' showaddelement='yes'>
+  <b:widget id='Blog1' locked='false' title='Blog Posts' type='Blog' version='1'>
+    <b:includable id='main' var='top'>
+      <b:if cond='data:blog.pageType == &quot;item&quot;'>
+        <div id='cf-post-wrapper'>
+          <header class='cf-post-header'>
+            <a class='cf-post-logo' href='https://www.cinefix.online/'>
+              <span class='cf-post-logo-icon'><i class='fas fa-play'></i></span>
+              <span class='cf-post-logo-text'>Cine<span>Fix</span></span>
+            </a>
+            <nav class='cf-post-nav'>
+              <a href='https://www.cinefix.online/'>Home</a>
+              <a href='https://www.cinefix.online/'>Movies</a>
+              <a href='https://www.cinefix.online/'>TV Shows</a>
+            </nav>
+          </header>
+
+          <div style='display:flex;justify-content:center;overflow:hidden;margin:16px auto;max-width:740px;'>
+            <div id='adPT' style='overflow:hidden;transform-origin:top center;'>
+              <script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script>
+              <script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script>
+            </div>
+            <script>(function(){var w=document.getElementById('adPT');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script>
+          </div>
+
+          <b:loop values='data:posts' var='post'>
+            <div class='cf-post-container'>
+              <div class='cf-post-meta-row'>
+                <span class='cf-post-cat'>
+                  <b:if cond='data:post.labels'>
+                    <b:loop values='data:post.labels' var='label'><data:label.name/><b:if cond='data:label.isLast == &quot;false&quot;'>, </b:if></b:loop>
+                  <b:else/>CineFix
+                  </b:if>
+                </span>
+                <span class='cf-post-date-txt'><data:post.dateHeader/></span>
+                <b:if cond='data:post.author'>
+                  <span class='cf-post-author-txt'>by <data:post.author.name/></span>
+                </b:if>
+              </div>
+              <h1 class='cf-post-h1'><data:post.title/></h1>
+              <b:if cond='data:post.featuredImage'>
+                <img class='cf-post-featured' expr:src='data:post.featuredImage' expr:alt='data:post.title' loading='eager'/>
+              </b:if>
+              <div class='cf-post-body'><data:post.body/></div>
+              <div class='cf-post-actions'>
+                <a class='cf-btn-home-back' href='https://www.cinefix.online/'><i class='fas fa-home'></i> Back to Home</a>
+                <a class='cf-btn-wa' expr:href='&quot;https://wa.me/?text=&quot;+data:post.title+&quot; &quot;+data:post.url' target='_blank'><i class='fab fa-whatsapp'></i> Share</a>
+              </div>
+            </div>
+          </b:loop>
+
+          <div style='display:flex;justify-content:center;overflow:hidden;margin:16px auto 40px;max-width:740px;'>
+            <div id='adPB' style='overflow:hidden;transform-origin:top center;'>
+              <script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script>
+              <script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script>
+            </div>
+            <script>(function(){var w=document.getElementById('adPB');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script>
+          </div>
+
+          <footer id='cf-footer' style='margin-top:0;'>
+            <div class='cf-footer-top'>
+              <div class='cf-footer-brand'><div class='cf-footer-icon'><i class='fas fa-play'></i></div><span class='cf-footer-name'>Cine<span>Fix</span></span></div>
+            </div>
+            <div class='cf-footer-bottom'><p class='cf-footer-copy'>&#169; 2025 CineFix. All rights reserved.</p></div>
+            <div class='cf-footer-disc'>CineFix does not host any files. All content is embedded from third-party sources.</div>
+          </footer>
+        </div>
+      </b:if>
+    </b:includable>
+  </b:widget>
+</b:section>
+
+<b:if cond='data:blog.pageType != &quot;item&quot;'>
+<style>
+  #cf-sidebar,#cf-main{display:flex}
+  #cf-overlay{display:none}
+  #cf-mob-nav{display:none}
+  #cf-scroll-top{display:none}
+</style>
+
+<div id='cf-overlay' onclick='closeSidebar()'></div>
+
+<aside id='cf-sidebar'>
+  <div class='cf-sidebar-logo' onclick='App.goHome(null)'>
+    <div class='cf-logo-icon'><i class='fas fa-play'></i></div>
+    <span class='cf-logo-text'>Cine<span>Fix</span></span>
+  </div>
+  <div class='cf-nav-section'>Discover</div>
+  <div class='cf-nav-item active' id='nav-home' onclick='App.goHome(this)'><i class='fas fa-home'></i> Home</div>
+  <div class='cf-nav-item' id='nav-movies' onclick='App.showMovies(this)'><i class='fas fa-film'></i> Movies</div>
+  <div class='cf-nav-item' id='nav-tv' onclick='App.showTV(this)'><i class='fas fa-tv'></i> TV Shows</div>
+  <div class='cf-nav-item' id='nav-trending' onclick='App.showTrending(this)'><i class='fas fa-fire'></i> Trending</div>
+  <div class='cf-nav-item' id='nav-toprated' onclick='App.showTopRated(this)'><i class='fas fa-star'></i> Top Rated</div>
+  <div class='cf-nav-item' id='nav-upcoming' onclick='App.showUpcoming(this)'><i class='fas fa-calendar-alt'></i> Upcoming</div>
+  <div class='cf-nav-section'>Regional</div>
+  <div class='cf-nav-item' onclick='App.showRegional("tr","Turkish Series",this)'><i class='fas fa-moon'></i> Turkish Series</div>
+  <div class='cf-nav-item' onclick='App.showRegional("ko","K-Drama",this)'><i class='fas fa-star'></i> K-Drama</div>
+  <div class='cf-nav-item' onclick='App.showRegional("hi","Bollywood",this)'><i class='fas fa-film'></i> Bollywood</div>
+  <div class='cf-nav-item' onclick='App.showRegional("ur","Pakistani Dramas",this)'><i class='fas fa-tv'></i> Pakistani Dramas</div>
+  <div class='cf-nav-section'>Live &amp; Blog</div>
+  <div class='cf-nav-item' id='nav-livetv' onclick='App.showLiveTV(this)'><i class='fas fa-satellite-dish'></i> Live TV<span class='cf-live-badge'>LIVE</span></div>
+  <div class='cf-nav-item' id='nav-blog' onclick='App.showBlog(this)'><i class='fas fa-newspaper'></i> Blog &amp; News</div>
+  <div class='cf-nav-section'>Library</div>
+  <div class='cf-nav-item' onclick='App.showWatchlist(this)'><i class='fas fa-heart'></i> Watchlist</div>
+  <div class='cf-nav-item' onclick='App.showHistory(this)'><i class='fas fa-history'></i> History</div>
+  <div class='cf-nav-section'>Pages</div>
+  <div class='cf-nav-item' onclick='App.showStatic("about")'><i class='fas fa-info-circle'></i> About Us</div>
+  <div class='cf-nav-item' onclick='App.showStatic("privacy")'><i class='fas fa-shield-alt'></i> Privacy Policy</div>
+  <div class='cf-nav-item' onclick='App.showStatic("dmca")'><i class='fas fa-gavel'></i> DMCA</div>
+  <div class='cf-nav-item' onclick='App.showStatic("contact")'><i class='fas fa-envelope'></i> Contact</div>
+  <div class='cf-sidebar-user'>
+    <div class='cf-user-avatar'>C</div>
+    <div><div class='cf-user-name'>CineFix User</div><div class='cf-user-plan'>CineFix Premium</div></div>
+  </div>
+</aside>
+
+<div id='cf-main'>
+  <header id='cf-header'>
+    <div class='cf-header-left'>
+      <button class='cf-mob-menu' onclick='openSidebar()'><i class='fas fa-bars'></i></button>
+      <div class='cf-breadcrumb'><span id='hd-title'>Home</span></div>
+    </div>
+    <div class='cf-header-tabs'>
+      <button class='cf-tab active' id='tab-all' onclick='App.setTab("all",this)'>All</button>
+      <button class='cf-tab' id='tab-movies' onclick='App.setTab("movies",this)'>Movies</button>
+      <button class='cf-tab' id='tab-tv' onclick='App.setTab("tv",this)'>TV Shows</button>
+    </div>
+    <div class='cf-header-right'>
+      <div class='cf-search-box'>
+        <i class='fas fa-search'></i>
+        <input id='cf-search-input' placeholder='Search movies, shows...' oninput='Search.onInput(this.value)' onkeydown='Search.onKey(event)' autocomplete='off'/>
+        <div class='cf-search-results' id='cf-search-results' style='display:none;'></div>
+      </div>
+      <button class='cf-icon-btn' onclick='App.showWatchlist(null)'><i class='fas fa-heart'></i></button>
+    </div>
+  </header>
+
+  <div id='cf-pages'>
+    <div class='cf-page active' id='page-home'>
+      <div id='cf-spotlight'><div class='cf-sp-dots' id='sp-dots'></div><div class='cf-sp-thumbs' id='sp-thumbs'></div></div>
+      <div class='cf-container'>
+        <div class='cf-ad'><div class='cf-ad-728' id='adH1'>
+          <script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script>
+          <script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script>
+        </div><script>(function(){var w=document.getElementById('adH1');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transformOrigin='top center';w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script></div>
+
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-red'><i class='fas fa-fire'></i></div><div><div class='cf-section-title'>Trending Now</div><div class='cf-section-sub'>Most watched today</div></div></div><div class='cf-view-all' onclick='App.showTrending(null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-row' id='row-trending'></div></div>
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-gold'><i class='fas fa-trophy'></i></div><div><div class='cf-section-title'>Top Rated Movies</div><div class='cf-section-sub'>All-time favorites</div></div></div><div class='cf-view-all' onclick='App.showTopRated(null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-land-grid' id='grid-toprated'></div></div>
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-blue'><i class='fas fa-tv'></i></div><div><div class='cf-section-title'>Popular TV Shows</div><div class='cf-section-sub'>Binge-worthy series</div></div></div><div class='cf-view-all' onclick='App.showTV(null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-row' id='row-tvshows'></div></div>
+
+        <div class='cf-ad'><div class='cf-ad-728' id='adH2'>
+          <script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script>
+          <script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script>
+        </div><script>(function(){var w=document.getElementById('adH2');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transformOrigin='top center';w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script></div>
+
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon' style='background:rgba(255,87,51,.12);color:#ff5733;border-color:rgba(255,87,51,.25);'><i class='fas fa-moon'></i></div><div><div class='cf-section-title'>Turkish Series</div><div class='cf-section-sub'>Popular Dizi</div></div></div><div class='cf-view-all' onclick='App.showRegional("tr","Turkish Series",null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-row' id='row-turkish'></div></div>
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon' style='background:rgba(255,105,180,.12);color:#ff69b4;border-color:rgba(255,105,180,.25);'><i class='fas fa-star'></i></div><div><div class='cf-section-title'>K-Drama</div><div class='cf-section-sub'>Best Korean dramas</div></div></div><div class='cf-view-all' onclick='App.showRegional("ko","K-Drama",null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-row' id='row-kdrama'></div></div>
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-gold'><i class='fas fa-film'></i></div><div><div class='cf-section-title'>Bollywood</div><div class='cf-section-sub'>Hindi movies</div></div></div><div class='cf-view-all' onclick='App.showRegional("hi","Bollywood",null)'>View All <i class='fas fa-arrow-right'></i></div></div><div class='cf-row' id='row-bollywood'></div></div>
+        <div class='cf-section'><div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-violet'><i class='fas fa-calendar-alt'></i></div><div><div class='cf-section-title'>Coming Soon</div><div class='cf-section-sub'>Upcoming releases</div></div></div></div><div class='cf-land-grid' id='grid-upcoming'></div></div>
+
+        <div class='cf-section' id='blog-section'>
+          <div class='cf-section-header'><div class='cf-section-left'><div class='cf-section-icon cf-icon-blue'><i class='fas fa-newspaper'></i></div><div><div class='cf-section-title'>Latest News</div><div class='cf-section-sub'>From CineFix blog</div></div></div><div class='cf-view-all' onclick='App.showBlog(null)'>View All <i class='fas fa-arrow-right'></i></div></div>
+          <div class='cf-blog-grid' id='blog-home-grid'><div style='text-align:center;padding:30px;color:var(--text4);grid-column:1/-1;'><i class='fas fa-circle-notch fa-spin' style='font-size:24px;color:var(--blue);'></i></div></div>
+        </div>
+
+        <div class='cf-ad'><div class='cf-ad-728' id='adH3'>
+          <script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script>
+          <script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script>
+        </div><script>(function(){var w=document.getElementById('adH3');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transformOrigin='top center';w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script></div>
+      </div>
+    </div>
+
+    <div class='cf-page' id='page-browse'>
+      <div class='cf-container'>
+        <div class='cf-ad'><div class='cf-ad-728' id='adB1'><script>atOptions={'key':'bef66093c3dcc8f40889fd8704bbcffb','format':'iframe','height':90,'width':728,'params':{}};</script><script src='https://poetrywishing.com/bef66093c3dcc8f40889fd8704bbcffb/invoke.js'></script></div><script>(function(){var w=document.getElementById('adB1');if(w){var s=Math.min(1,window.innerWidth/760);w.style.transformOrigin='top center';w.style.transform='scale('+s+')';w.style.height=Math.round(90*s)+'px';}})();</script></div>
+        <div class='cf-filter-bar'>
+          <span class='cf-filter-label'>FILTER:</span>
+          <select class='cf-select' id='filt-genre' onchange='Browse.filter()'><option value=''>All Genres</option></select>
+          <select class='cf-select' id='filt-year' onchange='Browse.filter()'><option value=''>All Years</option></select>
+          <select class='cf-select' id='filt-lang' onchange='Browse.filter()'><option value=''>All Languages</option><option value='en'>English</option><option value='hi'>Hindi</option><option value='bn'>Bangla</option><option value='tr'>Turkish</option><option value='ko'>Korean</option><option value='ur'>Urdu</option><option value='ja'>Japanese</option></select>
+          <select class='cf-select' id='filt-sort' onchange='Browse.filter()'><option value='popularity.desc'>Most Popular</option><option value='vote_average.desc'>Top Rated</option><option value='release_date.desc'>Newest</option></select>
+          <span class='cf-filter-count' id='browse-count'></span>
+        </div>
+        <div class='cf-browse-grid' id='browse-grid'></div>
+        <div class='cf-load-more'><button class='cf-btn-load' id='btn-load-more' onclick='Browse.loadMore()' style='display:none;'><i class='fas fa-plus'></i> Load More</button></div>
+      </div>
+    </div>
+
+    <div class='cf-page' id='page-detail'><div class='cf-container' id='detail-content'></div></div>
+
+    <div class='cf-page' id='page-blog'>
+      <div class='cf-container'>
+        <div class='cf-section-header' style='margin-bottom:24px;'><div class='cf-section-left'><div class='cf-section-icon cf-icon-blue'><i class='fas fa-newspaper'></i></div><div><div class='cf-section-title'>Blog &amp; News</div><div class='cf-section-sub'>Latest updates</div></div></div></div>
+        <div class='cf-blog-grid' id='blog-all-grid'><div style='text-align:center;padding:40px;color:var(--text4);grid-column:1/-1;'><i class='fas fa-circle-notch fa-spin' style='font-size:28px;color:var(--blue);'></i></div></div>
+        <div style='text-align:center;margin-top:24px;'><button class='cf-btn-load' id='blog-load-more' onclick='BlogFeed.loadMore()' style='display:none;'><i class='fas fa-plus'></i> Load More</button></div>
+      </div>
+    </div>
+
+    <div class='cf-page' id='page-livetv'>
+      <div class='cf-container'>
+        <div class='cf-section-header' style='margin-bottom:20px;'><div class='cf-section-left'><div class='cf-section-icon cf-icon-red'><i class='fas fa-satellite-dish'></i></div><div><div class='cf-section-title'>Live TV</div></div></div></div>
+        <div class='cf-tv-servers'><button class='cf-tv-server active' onclick='LiveTV.setServer(0,this)'>Server 1</button><button class='cf-tv-server' onclick='LiveTV.setServer(1,this)'>Server 2</button></div>
+        <div class='cf-tv-player'><iframe id='tv-frame' allowfullscreen='true' src='https://livefyiptv.vercel.app/'></iframe></div>
+      </div>
+    </div>
+
+    <div class='cf-page' id='page-watchlist'><div class='cf-container'><div class='cf-section-header' style='margin-bottom:24px;'><div class='cf-section-left'><div class='cf-section-icon cf-icon-red'><i class='fas fa-heart'></i></div><div><div class='cf-section-title'>My Watchlist</div></div></div></div><div class='cf-browse-grid' id='wl-grid'></div></div></div>
+
+    <div class='cf-page' id='page-history'><div class='cf-container'><div class='cf-section-header' style='margin-bottom:24px;'><div class='cf-section-left'><div class='cf-section-icon cf-icon-blue'><i class='fas fa-history'></i></div><div><div class='cf-section-title'>Watch History</div></div></div></div><div class='cf-browse-grid' id='hist-grid'></div></div></div>
+
+    <div class='cf-page' id='page-static'><div class='cf-container'><div id='static-content'></div></div></div>
+  </div>
+
+  <footer id='cf-footer'>
+    <div class='cf-footer-top'>
+      <div class='cf-footer-brand'><div class='cf-footer-icon'><i class='fas fa-play'></i></div><span class='cf-footer-name'>Cine<span>Fix</span></span></div>
+      <nav class='cf-footer-nav'>
+        <a onclick='App.goHome(null)'>Home</a><a onclick='App.showMovies(null)'>Movies</a><a onclick='App.showTV(null)'>TV Shows</a><a onclick='App.showLiveTV(null)'>Live TV</a><a onclick='App.showBlog(null)'>Blog</a><a onclick='App.showStatic("about")'>About</a><a onclick='App.showStatic("dmca")'>DMCA</a><a onclick='App.showStatic("contact")'>Contact</a>
+      </nav>
+      <div class='cf-footer-social'>
+        <a class='cf-fsocial' href='https://facebook.com/CineFixBD' target='_blank'><i class='fab fa-facebook-f'></i></a>
+        <a class='cf-fsocial' href='https://instagram.com/CineFixBD' target='_blank'><i class='fab fa-instagram'></i></a>
+        <a class='cf-fsocial' href='https://twitter.com/CineFixBD' target='_blank'><i class='fab fa-x-twitter'></i></a>
+        <a class='cf-fsocial' href='https://youtube.com/@CineFixBD' target='_blank'><i class='fab fa-youtube'></i></a>
+      </div>
+    </div>
+    <div class='cf-footer-bottom'>
+      <p class='cf-footer-copy'>&#169; 2025 CineFix. All rights reserved. Powered by TMDB API.</p>
+      <div class='cf-footer-badges'><span class='cf-fbadge hd'>HD</span><span class='cf-fbadge hd'>4K</span><span class='cf-fbadge free'>Free</span></div>
+    </div>
+    <div class='cf-footer-disc'>CineFix does not host any files. All content is embedded from third-party sources. For DMCA requests, contact us directly.</div>
+  </footer>
+</div>
+
+<nav id='cf-mob-nav'>
+  <div class='cf-mob-nav-inner'>
+    <button class='cf-mob-btn active' id='mnav-home' onclick='App.goHome(null);setMobNav(this)'><i class='fas fa-home'></i>Home</button>
+    <button class='cf-mob-btn' onclick='App.showMovies(null);setMobNav(this)'><i class='fas fa-film'></i>Movies</button>
+    <button class='cf-mob-btn' onclick='App.showTV(null);setMobNav(this)'><i class='fas fa-tv'></i>TV</button>
+    <button class='cf-mob-btn' onclick='App.showLiveTV(null);setMobNav(this)'><i class='fas fa-satellite-dish'></i>Live</button>
+    <button class='cf-mob-btn' onclick='App.showWatchlist(null);setMobNav(this)'><i class='fas fa-heart'></i>Watchlist</button>
+  </div>
+</nav>
+</b:if>
+
+<b:section id='cf-blogger-core' style='display:none;' maxwidgets='3' name='Blogger Core' showaddelement='yes'>
+  <b:widget id='Attribution1' locked='false' title='Attribution' type='Attribution' version='1'/>
+</b:section>
+
+<script>
+//<![CDATA[
+var CFG={
+  API_KEY:'da8b3a9742617e2f8d2103596911cdcf',
+  BASE:'https://api.themoviedb.org/3',
+  IMG:'https://image.tmdb.org/t/p/',
+  SERVERS:['https://vidsrc.to/embed/','https://2embed.cc/embed/']
+};
+
+var Prog={bar:null,start:function(){if(!this.bar)this.bar=document.getElementById('cf-prog-bar');if(this.bar)this.bar.style.width='30%';},done:function(){if(!this.bar)this.bar=document.getElementById('cf-prog-bar');if(this.bar){this.bar.style.width='100%';setTimeout(function(){if(Prog.bar)Prog.bar.style.width='0%';},500);}}};
+var Toast={show:function(msg,d){var t=document.getElementById('cf-toast');if(!t)return;t.textContent=msg;t.classList.add('show');setTimeout(function(){t.classList.remove('show');},d||2500);}};
+
+var API={
+  fetch:function(url){return fetch(url).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).catch(function(e){console.error('[CineFix API Error]',e);return null;});},
+  url:function(ep,p){p=p||{};p.api_key=CFG.API_KEY;var qs=Object.keys(p).filter(function(k){return p[k]!==''&&p[k]!=null&&p[k]!==undefined;}).map(function(k){return k+'='+encodeURIComponent(p[k]);}).join('&');return CFG.BASE+ep+'?'+qs;},
+  trending:function(t,pg){return this.fetch(this.url('/trending/'+(t||'all')+'/week',{page:pg||1}));},
+  popular:function(t,pg){return this.fetch(this.url('/'+t+'/popular',{page:pg||1}));},
+  topRated:function(t,pg){return this.fetch(this.url('/'+t+'/top_rated',{page:pg||1}));},
+  upcoming:function(pg){return this.fetch(this.url('/movie/upcoming',{page:pg||1}));},
+  discover:function(t,p){return this.fetch(this.url('/discover/'+t,p));},
+  search:function(q,t,pg){var ep=t==='multi'?'/search/multi':'/search/'+(t||'multi');return this.fetch(this.url(ep,{query:q,page:pg||1}));},
+  detail:function(t,id){return this.fetch(this.url('/'+t+'/'+id,{append_to_response:'videos,credits,similar'}));},
+  genres:function(t){return this.fetch(this.url('/genre/'+(t||'movie')+'/list'));}
+};
+
+var Render={
+  card:function(item,type){
+    var t=item.media_type||type||'movie';
+    var poster=item.poster_path?CFG.IMG+'w300'+item.poster_path:'';
+    var title=(item.title||item.name||'').replace(/'/g,'&#39;').replace(/"/g,'&quot;');
+    var titleDisplay=item.title||item.name||'';
+    var year=(item.release_date||item.first_air_date||'').slice(0,4);
+    var rating=item.vote_average?item.vote_average.toFixed(1):'';
+    var img=poster?'<img class="cf-card-img" src="'+poster+'" alt="'+title+'" loading="lazy"/>':'<div class="cf-card-img" style="background:var(--s3);display:flex;align-items:center;justify-content:center;font-size:36px;">&#127916;</div>';
+    return '<div class="cf-card" onclick="Detail.show(\''+t+'\','+item.id+')">'+'<div class="cf-card-poster">'+img+'<div class="cf-card-overlay"></div><div class="cf-card-play"><i class="fas fa-play"></i></div>'+(rating?'<div class="cf-card-rating"><i class="fas fa-star"></i>'+rating+'</div>':'')+'</div><div class="cf-card-info"><div class="cf-card-title">'+titleDisplay+'</div><div class="cf-card-meta"><span>'+year+'</span></div></div></div>';
+  },
+  row:function(id,items,type){var el=document.getElementById(id);if(!el)return;if(!items||!items.length){el.innerHTML='<div style="color:var(--text4);padding:20px;">No content available</div>';return;}el.innerHTML=items.filter(function(i){return i.poster_path;}).slice(0,20).map(function(i){return Render.card(i,type);}).join('');},
+  landCard:function(item,type){var t=item.media_type||type||'movie';var bd=item.backdrop_path?CFG.IMG+'w780'+item.backdrop_path:'';var title=(item.title||item.name||'').replace(/"/g,'&quot;');var titleDisplay=item.title||item.name||'';var rating=item.vote_average?item.vote_average.toFixed(1):'';return '<div class="cf-land-card" onclick="Detail.show(\''+t+'\','+item.id+')">'+(bd?'<img src="'+bd+'" alt="'+title+'" loading="lazy"/>':'')+'<div class="cf-land-overlay"></div><div class="cf-land-title">'+titleDisplay+(rating?' <small style="color:var(--gold);">&#9733;'+rating+'</small>':'')+'</div></div>';},
+  grid:function(id,items,type,append){var el=document.getElementById(id);if(!el)return;var html=items.filter(function(i){return i.poster_path;}).map(function(i){return Render.card(i,type);}).join('');if(append)el.innerHTML+=html;else el.innerHTML=html;},
+  skeletons:function(id,n){var el=document.getElementById(id);if(!el)return;var h='';for(var i=0;i<(n||10);i++)h+='<div class="cf-card"><div class="cf-card-poster cf-skel"></div><div style="height:10px;border-radius:4px;margin-top:8px;" class="cf-skel"></div></div>';el.innerHTML=h;}
+};
+
+var Spotlight={
+  cur:0,timer:null,
+  build:function(items){
+    var sp=document.getElementById('cf-spotlight');if(!sp||!items||!items.length)return;
+    this.items=items.slice(0,5);var sH='',dH='',tH='';
+    this.items.forEach(function(item,i){
+      var bd=item.backdrop_path?CFG.IMG+'original'+item.backdrop_path:'';
+      var pt=item.poster_path?CFG.IMG+'w154'+item.poster_path:'';
+      var title=item.title||item.name||'';var year=(item.release_date||item.first_air_date||'').slice(0,4);
+      var rating=item.vote_average?item.vote_average.toFixed(1):'';var desc=(item.overview||'').slice(0,160);var type=item.media_type||'movie';
+      sH+='<div class="cf-sp-slide'+(i===0?' active':'')+'">'+
+        (bd?'<img class="cf-sp-bg" src="'+bd+'" alt="" loading="'+(i===0?'eager':'lazy')+'"/>':'')+
+        '<div class="cf-sp-grad"></div><div class="cf-sp-grad2"></div>'+
+        '<div class="cf-sp-content">'+
+          '<div class="cf-sp-badges"><span class="cf-sp-badge cf-badge-new">NEW</span><span class="cf-sp-badge cf-badge-4k">HD</span></div>'+
+          '<div class="cf-sp-title">'+title+'</div>'+
+          '<div class="cf-sp-meta">'+(rating?'<span class="cf-sp-rating"><i class="fas fa-star"></i>'+rating+'</span><span class="cf-sp-dot"></span>':'')+(year?'<span>'+year+'</span>':'')+'</div>'+
+          '<div class="cf-sp-desc">'+desc+'</div>'+
+          '<div class="cf-sp-btns"><button class="cf-btn-watch" onclick="Detail.show(\''+type+'\','+item.id+')"><i class="fas fa-play"></i> Watch Now</button><button class="cf-btn-info" onclick="Detail.show(\''+type+'\','+item.id+')"><i class="fas fa-info-circle"></i> More Info</button></div>'+
+        '</div></div>';
+      dH+='<button class="cf-sp-dot-btn'+(i===0?' active':'')+'" onclick="Spotlight.go('+i+')"></button>';
+      tH+=(pt?'<img class="cf-sp-thumb'+(i===0?' active':'')+'" src="'+pt+'" onclick="Spotlight.go('+i+')" loading="lazy"/>':'');
+    });
+    sp.innerHTML=sH+'<div class="cf-sp-dots" id="sp-dots">'+dH+'</div><div class="cf-sp-thumbs" id="sp-thumbs">'+tH+'</div>';
+    this.startAuto();
+  },
+  go:function(idx){var slides=document.querySelectorAll('.cf-sp-slide');var dots=document.querySelectorAll('.cf-sp-dot-btn');var thumbs=document.querySelectorAll('.cf-sp-thumb');if(!slides.length)return;slides.forEach(function(s){s.classList.remove('active');});dots.forEach(function(d){d.classList.remove('active');});thumbs.forEach(function(t){t.classList.remove('active');});idx=((idx%slides.length)+slides.length)%slides.length;this.cur=idx;slides[idx].classList.add('active');if(dots[idx])dots[idx].classList.add('active');if(thumbs[idx])thumbs[idx].classList.add('active');},
+  startAuto:function(){clearInterval(this.timer);var self=this;this.timer=setInterval(function(){self.go(self.cur+1);},5500);}
+};
+
+var Detail={
+  show:function(type,id){
+    App.showPage('page-detail');document.getElementById('hd-title').textContent='Loading...';
+    var el=document.getElementById('detail-content');if(el)el.innerHTML='<div style="text-align:center;padding:80px;"><i class="fas fa-circle-notch fa-spin" style="font-size:32px;color:var(--blue);"></i></div>';
+    Prog.start();API.detail(type,id).then(function(data){if(!data){el.innerHTML='<div class="cf-empty"><div class="cf-empty-icon"><i class="fas fa-exclamation-circle"></i></div><div class="cf-empty-title">Could not load details</div></div>';Prog.done();return;}Detail.render(data,type,el);Prog.done();});
+  },
+  render:function(data,type,el){
+    if(!el)return;
+    var title=data.title||data.name||'';var year=(data.release_date||data.first_air_date||'').slice(0,4);
+    var rating=data.vote_average?data.vote_average.toFixed(1):'';
+    var runtime=data.runtime?Math.floor(data.runtime/60)+'h '+data.runtime%60+'m':'';
+    var genres=(data.genres||[]).map(function(g){return '<span class="cf-card-genre">'+g.name+'</span>';}).join('');
+    var backdrop=data.backdrop_path?CFG.IMG+'original'+data.backdrop_path:'';
+    document.getElementById('hd-title').textContent=title;
+    el.innerHTML='<div class="cf-detail-hero">'+(backdrop?'<img src="'+backdrop+'" alt="'+title+'" loading="eager"/>':'')+'<div class="cf-detail-hero-grad"></div><div class="cf-detail-info"><div class="cf-detail-title">'+title+'</div><div class="cf-detail-meta">'+(rating?'<span style="color:var(--gold);font-weight:700;"><i class="fas fa-star"></i> '+rating+'</span><span class="cf-sp-dot"></span>':'')+year+(runtime?'<span class="cf-sp-dot"></span><span>'+runtime+'</span>':'')+'</div><div class="cf-sp-btns"><button class="cf-btn-watch" onclick="Player.play(\''+type+'\','+data.id+')"><i class="fas fa-play"></i> Watch Now</button></div></div></div><div style="max-width:900px;"><div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">'+genres+'</div><p style="font-size:15px;line-height:1.8;color:var(--text2);margin-bottom:28px;">'+(data.overview||'')+'</p><div class="cf-player-wrap" id="cf-player" style="display:none;"></div>'+(data.similar&&data.similar.results&&data.similar.results.length?'<div class="cf-section"><div class="cf-section-header"><div class="cf-section-left"><div class="cf-section-icon cf-icon-blue"><i class="fas fa-film"></i></div><div><div class="cf-section-title">Similar</div></div></div></div><div class="cf-row" id="row-similar"></div></div>':'')+'</div>';
+    if(data.similar&&data.similar.results)Render.row('row-similar',data.similar.results,type);
+  }
+};
+
+var Player={
+  play:function(type,id){
+    var wrap=document.getElementById('cf-player');if(!wrap)return;
+    wrap.style.display='block';
+    var src=CFG.SERVERS[0]+(type==='tv'?'tv/':'movie/')+id;
+    wrap.innerHTML='<iframe src="'+src+'" allowfullscreen="true" allow="fullscreen; autoplay; encrypted-media; picture-in-picture"></iframe>';
+    wrap.scrollIntoView({behavior:'smooth',block:'center'});
+  }
+};
+
+var Browse={
+  state:{type:'movie',mode:'popular',page:1,total:1,params:{}},
+  init:function(type,mode,params){this.state={type:type||'movie',mode:mode||'popular',page:1,total:1,params:params||{}};Render.skeletons('browse-grid',20);this.load(false);},
+  load:function(append){
+    var s=this.state;Prog.start();
+    var p=Object.assign({},s.params,{page:s.page});
+    var promise;
+    if(s.mode==='search'){promise=API.search(s.params.query||'',s.type,s.page);}
+    else if(s.mode==='discover'){promise=API.discover(s.type,p);}
+    else if(s.mode==='toprated'){promise=API.topRated(s.type,s.page);}
+    else if(s.mode==='trending'){promise=API.trending('all',s.page);}
+    else if(s.mode==='upcoming'){promise=API.upcoming(s.page);}
+    else{promise=API.popular(s.type,s.page);}
+    promise.then(function(data){
+      if(!data){var gr=document.getElementById('browse-grid');if(gr&&!append)gr.innerHTML='<div class="cf-empty" style="grid-column:1/-1;"><div class="cf-empty-icon"><i class="fas fa-wifi"></i></div><div class="cf-empty-title">Failed to load</div><div class="cf-empty-sub">Please check your internet connection</div></div>';Prog.done();return;}
+      s.total=data.total_pages||1;
+      var cnt=document.getElementById('browse-count');if(cnt)cnt.textContent=(data.total_results||0).toLocaleString()+' results';
+      Render.grid('browse-grid',data.results||[],s.type,append);
+      var lm=document.getElementById('btn-load-more');if(lm)lm.style.display=s.page<s.total?'inline-flex':'none';
+      Prog.done();
+    });
+  },
+  loadMore:function(){if(this.state.page>=this.state.total)return;this.state.page++;this.load(true);},
+  filter:function(){
+    var g=document.getElementById('filt-genre');var y=document.getElementById('filt-year');
+    var l=document.getElementById('filt-lang');var so=document.getElementById('filt-sort');
+    var yearKey=this.state.type==='tv'?'first_air_date_year':'primary_release_year';
+    var yearVal=y&&y.value?y.value:undefined;
+    this.state.params={with_genres:g&&g.value?g.value:undefined,with_original_language:l&&l.value?l.value:undefined,sort_by:so&&so.value?so.value:'popularity.desc'};
+    if(yearVal)this.state.params[yearKey]=yearVal;
+    this.state.page=1;this.state.mode='discover';Render.skeletons('browse-grid',20);this.load(false);
+  }
+};
+
+var Genres={
+  loaded:false,
+  load:function(){
+    if(this.loaded)return;this.loaded=true;
+    var sel=document.getElementById('filt-genre');if(!sel)return;
+    API.genres('movie').then(function(data){
+      if(!data||!data.genres)return;
+      data.genres.forEach(function(g){var opt=document.createElement('option');opt.value=g.id;opt.textContent=g.name;sel.appendChild(opt);});
+    });
+  }
+};
+
+var Search={
+  timer:null,
+  onInput:function(val){clearTimeout(this.timer);var res=document.getElementById('cf-search-results');if(!val||val.length<2){if(res)res.style.display='none';return;}var self=this;this.timer=setTimeout(function(){self.run(val);},400);},
+  onKey:function(e){if(e.key==='Enter'){var val=document.getElementById('cf-search-input').value.trim();if(val)this.fullSearch(val);}if(e.key==='Escape'){var res=document.getElementById('cf-search-results');if(res)res.style.display='none';}},
+  run:function(q){var res=document.getElementById('cf-search-results');if(!res)return;res.style.display='block';res.innerHTML='<div style="padding:16px;text-align:center;color:var(--text3);"><i class="fas fa-circle-notch fa-spin"></i></div>';API.search(q,'multi',1).then(function(data){if(!data||!data.results||!data.results.length){res.innerHTML='<div style="padding:16px;text-align:center;color:var(--text3);">No results</div>';return;}res.innerHTML=data.results.slice(0,8).filter(function(i){return i.media_type!=='person';}).map(function(item){var t=item.media_type||'movie';var img=item.poster_path?CFG.IMG+'w92'+item.poster_path:'';var title=item.title||item.name||'';var year=(item.release_date||item.first_air_date||'').slice(0,4);return '<div class="cf-search-result-item" onclick="Detail.show(\''+t+'\','+item.id+');document.getElementById(\'cf-search-results\').style.display=\'none\';document.getElementById(\'cf-search-input\').value=\'\'">'+(img?'<img class="cf-sri-img" src="'+img+'" alt="'+title+'" loading="lazy"/>':'<div class="cf-sri-img" style="background:var(--s3);"></div>')+'<div><div class="cf-sri-title">'+title+'</div><div class="cf-sri-meta">'+(year?year+' &bull; ':'')+t+'</div></div></div>';}).join('');});},
+  fullSearch:function(q){
+    App.showPage('page-browse');document.getElementById('hd-title').textContent='Search: '+q;
+    var res=document.getElementById('cf-search-results');if(res)res.style.display='none';
+    var inp=document.getElementById('cf-search-input');if(inp)inp.value='';
+    Browse.state={type:'multi',mode:'search',page:1,total:1,params:{query:q}};
+    Render.skeletons('browse-grid',20);Browse.load(false);
+  }
+};
+
+var Watchlist={
+  get:function(){try{return JSON.parse(localStorage.getItem('cf_watchlist')||'[]');}catch(e){return[];}},
+  save:function(list){try{localStorage.setItem('cf_watchlist',JSON.stringify(list));}catch(e){}},
+  toggle:function(item,type){var list=this.get();var idx=list.findIndex(function(i){return i.id===item.id;});if(idx>-1){list.splice(idx,1);Toast.show('Removed from Watchlist');}else{item._type=type;list.unshift(item);Toast.show('Added to Watchlist!');}this.save(list);},
+  render:function(){var list=this.get();var el=document.getElementById('wl-grid');if(!el)return;if(!list.length){el.innerHTML='<div class="cf-empty" style="grid-column:1/-1;"><div class="cf-empty-icon"><i class="fas fa-heart"></i></div><div class="cf-empty-title">Watchlist is empty</div></div>';return;}el.innerHTML=list.map(function(item){return Render.card(item,item._type||'movie');}).join('');}
+};
+
+var History={
+  get:function(){try{return JSON.parse(localStorage.getItem('cf_history')||'[]');}catch(e){return[];}},
+  render:function(){var list=this.get();var el=document.getElementById('hist-grid');if(!el)return;if(!list.length){el.innerHTML='<div class="cf-empty" style="grid-column:1/-1;"><div class="cf-empty-icon"><i class="fas fa-history"></i></div><div class="cf-empty-title">No history yet</div></div>';return;}el.innerHTML=list.map(function(item){return Render.card(item,item._type||'movie');}).join('');}
+};
+
+var BlogFeed={
+  allPosts:[],perPage:9,page:1,
+  fetchAll:function(cb){var feedUrl=window.location.origin+'/feeds/posts/default?alt=json&max-results=50';fetch(feedUrl).then(function(r){return r.json();}).then(function(data){var e=(data&&data.feed&&data.feed.entry)||[];BlogFeed.allPosts=e;if(cb)cb(e);}).catch(function(){if(cb)cb([]);});},
+  getUrl:function(e){var links=e.link||[];for(var i=0;i<links.length;i++){if(links[i].rel==='alternate')return links[i].href;}return '#';},
+  getThumb:function(e){if(e.media$thumbnail)return e.media$thumbnail.url.replace('/s72-c/','/s400-c/');var c=(e.content&&e.content.$t)||'';var m=c.match(/<img[^>]+src=['"]([^'"]+)['"]/);return m?m[1]:'';},
+  getExcerpt:function(e){var c=(e.content&&e.content.$t)||'';var t=c.replace(/<[^>]+>/g,'').trim();return t.slice(0,120)+(t.length>120?'...':'');},
+  renderCard:function(e){var title=(e.title&&e.title.$t)||'Untitled';var url=this.getUrl(e);var thumb=this.getThumb(e);var desc=this.getExcerpt(e);var date=e.published?new Date(e.published.$t).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'}):'';var label=(e.category&&e.category[0])?e.category[0].term:'CineFix';return '<a class="cf-blog-card" href="'+url+'">'+(thumb?'<img class="cf-blog-card-img" src="'+thumb+'" alt="'+title.replace(/"/g,'&quot;')+'" loading="lazy"/>':'<div class="cf-blog-card-img-placeholder"><i class="fas fa-newspaper"></i></div>')+'<div class="cf-blog-card-body"><span class="cf-blog-card-tag">'+label+'</span><div class="cf-blog-card-title">'+title+'</div><div class="cf-blog-card-desc">'+desc+'</div><div class="cf-blog-card-foot"><span>'+date+'</span><span class="cf-blog-read-more">Read More &rarr;</span></div></div></a>';},
+  loadHome:function(){var el=document.getElementById('blog-home-grid');if(!el)return;this.fetchAll(function(entries){if(!entries.length){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:30px;color:var(--text4);">No posts yet</div>';return;}el.innerHTML=entries.slice(0,6).map(function(e){return BlogFeed.renderCard(e);}).join('');});},
+  loadAll:function(){var el=document.getElementById('blog-all-grid');if(!el)return;this.page=1;this.fetchAll(function(entries){if(!entries.length){el.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text4);">No posts yet. Check back soon!</div>';return;}el.innerHTML=entries.slice(0,BlogFeed.perPage).map(function(e){return BlogFeed.renderCard(e);}).join('');var lm=document.getElementById('blog-load-more');if(lm)lm.style.display=entries.length>BlogFeed.perPage?'inline-flex':'none';});},
+  loadMore:function(){this.page++;var start=(this.page-1)*this.perPage;var el=document.getElementById('blog-all-grid');if(!el)return;var slice=this.allPosts.slice(start,this.page*this.perPage);el.innerHTML+=slice.map(function(e){return BlogFeed.renderCard(e);}).join('');var lm=document.getElementById('blog-load-more');if(lm)lm.style.display=this.page*this.perPage>=this.allPosts.length?'none':'inline-flex';}
+};
+
+var LiveTV={
+  servers:['https://livefyiptv.vercel.app/','https://mswott.net/'],
+  setServer:function(idx,btn){document.querySelectorAll('.cf-tv-server').forEach(function(b){b.classList.remove('active');});if(btn)btn.classList.add('active');var f=document.getElementById('tv-frame');if(f)f.src=this.servers[idx]||this.servers[0];}
+};
+
+var StaticPages={
+  about:function(){return '<div class="cf-static"><div class="cf-static-hero"><h1>About CineFix</h1><p>Your free HD streaming platform</p></div><div class="cf-scard"><h2>Who We Are</h2><p>CineFix is a free streaming platform with Movies, TV Shows, Turkish Dramas, K-Dramas, Bollywood, Hollywood, and Live TV — completely free, no sign-up needed.</p></div><div class="cf-scard"><h2>What We Offer</h2><ul><li>Latest Movies in HD</li><li>Popular TV Shows and Web Series</li><li>Turkish Series, K-Dramas, Pakistani Dramas</li><li>Live TV Channels</li><li>Personal Watchlist</li></ul></div><div class="cf-scard"><h2>Follow CineFix</h2><div class="cf-social-row"><a class="cf-social-btn cf-sfb" href="https://facebook.com/CineFixBD" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a class="cf-social-btn cf-syt" href="https://youtube.com/@CineFixBD" target="_blank"><i class="fab fa-youtube"></i> YouTube</a><a class="cf-social-btn cf-sig" href="https://instagram.com/CineFixBD" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></div></div><div class="cf-scard"><h2>Disclaimer</h2><p>CineFix does not host any media files. All content is embedded from third-party sources.</p></div></div>';},
+  privacy:function(){return '<div class="cf-static"><div class="cf-static-hero"><h1>Privacy Policy</h1><p>Last updated: May 2025</p></div><div class="cf-scard"><h2>Data Collection</h2><p>CineFix does not collect personally identifiable information. No registration required. Watchlist and History are stored locally in your browser only.</p></div><div class="cf-scard"><h2>Third-Party Services</h2><ul><li>TMDB — content metadata</li><li>Adsterra — advertising</li><li>Google Fonts — typography</li><li>Third-party video embeds</li></ul></div><div class="cf-scard"><h2>Contact</h2><p>Questions? <span style="color:var(--blue);cursor:pointer;" onclick="App.showStatic(\'contact\')">Contact us here.</span></p></div></div>';},
+  dmca:function(){return '<div class="cf-static"><div class="cf-static-hero" style="background:linear-gradient(135deg,#e50914,#7c3aed);"><h1>DMCA Notice</h1><p>Copyright Policy</p></div><div class="cf-scard"><h2>Our Policy</h2><p>CineFix is a discovery platform. We do not host, store, or upload any video content. All videos are embedded from third-party sites.</p></div><div class="cf-scard"><h2>Filing a Request</h2><ul><li>Your name, address and email</li><li>Description of the copyrighted work</li><li>URL of the content on CineFix</li><li>Statement of good faith belief</li></ul></div><div class="cf-scard"><h2>Submit DMCA</h2><p>Use our <span style="color:var(--blue);cursor:pointer;" onclick="App.showStatic(\'contact\')">Contact page</span> with subject "DMCA Takedown Request". We respond within 48-72 hours.</p></div></div>';},
+  contact:function(){return '<div class="cf-static"><div class="cf-static-hero" style="background:linear-gradient(135deg,#0ea5e9,#10b981);"><h1>Contact Us</h1><p>We reply within 24 hours</p></div><div class="cf-scard"><h2>Send a Message</h2><input id="cnt-name" type="text" placeholder="Your Name" style="width:100%;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--r10);padding:12px 16px;color:var(--text1);font-size:14px;font-family:var(--font);outline:none;margin-bottom:10px;box-sizing:border-box;"/><input id="cnt-email" type="email" placeholder="Your Email" style="width:100%;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--r10);padding:12px 16px;color:var(--text1);font-size:14px;font-family:var(--font);outline:none;margin-bottom:10px;box-sizing:border-box;"/><input id="cnt-subject" type="text" placeholder="Subject" style="width:100%;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--r10);padding:12px 16px;color:var(--text1);font-size:14px;font-family:var(--font);outline:none;margin-bottom:10px;box-sizing:border-box;"/><textarea id="cnt-msg" placeholder="Your message..." style="width:100%;background:var(--s2);border:1.5px solid var(--b1);border-radius:var(--r10);padding:12px 16px;color:var(--text1);font-size:14px;font-family:var(--font);outline:none;height:120px;resize:vertical;margin-bottom:10px;box-sizing:border-box;"></textarea><button onclick="var n=document.getElementById(\'cnt-name\').value,e=document.getElementById(\'cnt-email\').value,s=document.getElementById(\'cnt-subject\').value,m=document.getElementById(\'cnt-msg\').value;if(!n||!e||!m){Toast.show(\'Please fill all fields\');return;}window.open(\'mailto:cinefix.contact@gmail.com?subject=\'+encodeURIComponent(s)+\'&body=\'+encodeURIComponent(\'Name: \'+n+\'\\nEmail: \'+e+\'\\n\\n\'+m));Toast.show(\'Opening mail client...\');" style="background:var(--grad);border:none;border-radius:var(--r10);color:#fff;padding:12px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font);">Send Message</button></div><div class="cf-scard"><h2>Social Media</h2><div class="cf-social-row"><a class="cf-social-btn cf-sfb" href="https://facebook.com/CineFixBD" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a class="cf-social-btn cf-syt" href="https://youtube.com/@CineFixBD" target="_blank"><i class="fab fa-youtube"></i> YouTube</a></div></div></div>';}
+};
+
+var App={
+  cur:'page-home',
+  showPage:function(id){document.querySelectorAll('.cf-page').forEach(function(p){p.classList.remove('active');});var pg=document.getElementById(id);if(pg){pg.classList.add('active');this.cur=id;}window.scrollTo({top:0,behavior:'smooth'});closeSidebar();},
+  setNav:function(el){document.querySelectorAll('.cf-nav-item').forEach(function(n){n.classList.remove('active');});if(el)el.classList.add('active');},
+  goHome:function(el){this.showPage('page-home');this.setNav(el||document.getElementById('nav-home'));document.getElementById('hd-title').textContent='Home';this.resetTabs();},
+  showMovies:function(el){this.showPage('page-browse');this.setNav(el||document.getElementById('nav-movies'));document.getElementById('hd-title').textContent='Movies';Genres.load();Browse.init('movie','popular');},
+  showTV:function(el){this.showPage('page-browse');this.setNav(el||document.getElementById('nav-tv'));document.getElementById('hd-title').textContent='TV Shows';Genres.load();Browse.init('tv','popular');},
+  showTrending:function(el){this.showPage('page-browse');this.setNav(el||document.getElementById('nav-trending'));document.getElementById('hd-title').textContent='Trending';Browse.init('all','trending');},
+  showTopRated:function(el){this.showPage('page-browse');this.setNav(el||document.getElementById('nav-toprated'));document.getElementById('hd-title').textContent='Top Rated';Browse.init('movie','toprated');},
+  showUpcoming:function(el){this.showPage('page-browse');this.setNav(el||document.getElementById('nav-upcoming'));document.getElementById('hd-title').textContent='Upcoming';Browse.init('movie','upcoming');},
+  showRegional:function(lang,title,el){this.showPage('page-browse');if(el)this.setNav(el);document.getElementById('hd-title').textContent=title;Browse.init('tv','discover',{with_original_language:lang,sort_by:'popularity.desc'});},
+  showLiveTV:function(el){this.showPage('page-livetv');this.setNav(el||document.getElementById('nav-livetv'));document.getElementById('hd-title').textContent='Live TV';},
+  showBlog:function(el){this.showPage('page-blog');this.setNav(el||document.getElementById('nav-blog'));document.getElementById('hd-title').textContent='Blog & News';BlogFeed.loadAll();},
+  showWatchlist:function(el){this.showPage('page-watchlist');if(el)this.setNav(el);document.getElementById('hd-title').textContent='My Watchlist';Watchlist.render();},
+  showHistory:function(el){this.showPage('page-history');if(el)this.setNav(el);document.getElementById('hd-title').textContent='Watch History';History.render();},
+  showStatic:function(page){this.showPage('page-static');document.getElementById('hd-title').textContent=page.charAt(0).toUpperCase()+page.slice(1);var el=document.getElementById('static-content');if(el&&StaticPages[page])el.innerHTML=StaticPages[page]();},
+  setTab:function(tab,el){document.querySelectorAll('.cf-tab').forEach(function(t){t.classList.remove('active');});if(el)el.classList.add('active');if(tab==='movies')this.showMovies(null);else if(tab==='tv')this.showTV(null);else this.goHome(null);},
+  resetTabs:function(){document.querySelectorAll('.cf-tab').forEach(function(t){t.classList.remove('active');});var at=document.getElementById('tab-all');if(at)at.classList.add('active');}
+};
+
+function openSidebar(){var sb=document.getElementById('cf-sidebar');var ov=document.getElementById('cf-overlay');if(sb)sb.classList.add('open');if(ov)ov.classList.add('on');}
+function closeSidebar(){var sb=document.getElementById('cf-sidebar');var ov=document.getElementById('cf-overlay');if(sb)sb.classList.remove('open');if(ov)ov.classList.remove('on');}
+function setMobNav(el){document.querySelectorAll('.cf-mob-btn').forEach(function(b){b.classList.remove('active');});if(el)el.classList.add('active');}
+
+window.addEventListener('scroll',function(){var btn=document.getElementById('cf-scroll-top');var hdr=document.getElementById('cf-header');if(btn)btn.style.display=window.scrollY>400?'block':'none';if(hdr){if(window.scrollY>60)hdr.classList.add('scrolled');else hdr.classList.remove('scrolled');}},{passive:true});
+
+(function(){
+  var isSPA=document.getElementById('cf-main')!==null;
+  if(!isSPA)return;
+
+  BlogFeed.loadHome();
+
+  var yearSel=document.getElementById('filt-year');
+  if(yearSel){var cy=new Date().getFullYear();for(var y=cy;y>=2000;y--)yearSel.innerHTML+='<option value="'+y+'">'+y+'</option>';}
+
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSidebar();});
+  document.addEventListener('click',function(e){var inp=document.getElementById('cf-search-input');var res=document.getElementById('cf-search-results');if(res&&inp&&!res.contains(e.target)&&e.target!==inp)res.style.display='none';});
+
+  Prog.start();
+  ['row-trending','row-tvshows','row-turkish','row-kdrama','row-bollywood'].forEach(function(id){Render.skeletons(id,15);});
+
+  Promise.all([
+    API.trending('all',1),
+    API.topRated('movie',1),
+    API.popular('tv',1),
+    API.upcoming(1)
+  ]).then(function(r){
+    var trending=r[0],toprated=r[1],tv=r[2],upcoming=r[3];
+    if(trending&&trending.results){Spotlight.build(trending.results.filter(function(i){return i.backdrop_path;}).slice(0,5));Render.row('row-trending',trending.results,'movie');}
+    if(toprated&&toprated.results){var el=document.getElementById('grid-toprated');if(el)el.innerHTML=toprated.results.filter(function(i){return i.backdrop_path;}).slice(0,6).map(function(i){return Render.landCard(i,'movie');}).join('');}
+    if(tv&&tv.results)Render.row('row-tvshows',tv.results,'tv');
+    if(upcoming&&upcoming.results){var uEl=document.getElementById('grid-upcoming');if(uEl)uEl.innerHTML=upcoming.results.filter(function(i){return i.backdrop_path;}).slice(0,6).map(function(i){return Render.landCard(i,'movie');}).join('');}
+    Prog.done();
+    API.discover('tv',{with_original_language:'tr',sort_by:'popularity.desc'}).then(function(d){if(d&&d.results)Render.row('row-turkish',d.results,'tv');});
+    API.discover('tv',{with_original_language:'ko',sort_by:'popularity.desc'}).then(function(d){if(d&&d.results)Render.row('row-kdrama',d.results,'tv');});
+    API.discover('movie',{with_original_language:'hi',sort_by:'popularity.desc'}).then(function(d){if(d&&d.results)Render.row('row-bollywood',d.results,'movie');});
+  }).catch(function(e){console.error('[CineFix]',e);Prog.done();});
+})();
+//]]>
+</script>
+
+</body>
+</html>
